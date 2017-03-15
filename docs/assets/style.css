@@ -12,7 +12,7 @@ html {
 body {
     margin: 0;
     line-height: 1.8;
-    font-family: "Roboto", "Trebuchet MS", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Trebuchet MS", Helvetica, Arial, sans-serif;
 }
 
 /* sections */
