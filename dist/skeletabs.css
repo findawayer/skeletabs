@@ -2,7 +2,7 @@
     Skeletabs
     Basic, accessible, responsive and freely restylable jQuery tabs
  ----------------------------------------------------------------------*/
-/*! Skeletabs: Core (required)
+/* Skeletabs: Core (required)
  ----------------------------------------------------------------------*/
 .skltbs-tab-group {
     margin: 0;
@@ -49,7 +49,7 @@
     font: inherit;
 }
 
-/*! Skeletabs: Animation (optional if you don't need animation)
+/* Skeletabs: Animation (optional if you don't need animation)
  ----------------------------------------------------------------------*/
 .skltbs.has-animation .skltbs-tab {
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -311,7 +311,7 @@
     }
 }
 
-/*! Skeletabs: Default theme (optional if you want a personalized theme)
+/* Skeletabs: Default theme (optional if you want a personalized theme)
  ----------------------------------------------------------------------*/
 .skltbs {
     margin-top: 1.5em;

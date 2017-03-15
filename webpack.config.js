@@ -33,15 +33,20 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader',
+                loader: "babel-loader",
                 query: {
-                    presets: ['es2015']
+                    plugins: [
+                        "transform-es2015-classes",
+                        "transform-es3-member-expression-literals",
+                        "transform-es3-property-literals"
+                    ],
+                    presets: ["es2015"]
                 }
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin("skeletabs.css"),
-        new webpack.optimize.UglifyJsPlugin()
+        //new webpack.optimize.UglifyJsPlugin(),
+        new ExtractTextPlugin("skeletabs.css")
     ]
 };

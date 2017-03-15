@@ -67,6 +67,12 @@ import styles from "../scss/skeletabs.scss";
         _.currentIndex = _._getIndexByHash(window.location.hash) // if a tab matches URL hash, target that tab
                         || toZeroBased(_.options.defaultTab); // convert `defaultTab` value to 0-based index
 
+        // prevent jumping on clicking tabs in IE8-
+        if (document.documentMode < 9) {
+            _.options.updateUrl = false;
+            console.info("Skeletabs URL hash update has been disabled due to the browser's spec.");
+        }
+
         // set attributes and bind events
         _._setDomAttributes();
         _._initializeEvents();
@@ -244,7 +250,7 @@ import styles from "../scss/skeletabs.scss";
                 if (window.history && window.history.replaceState) {
                     history.replaceState(null, null, tab.hash);
                 } else {
-                    location.hash = tab.hash;
+                    window.location.hash = tab.hash;
                 }
             }
         };

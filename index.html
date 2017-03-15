@@ -18,7 +18,7 @@
     <!-- Web font -->
     <link rel="subresource" href="https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Mono" as="style" crossorigin="anonymous" />
     <!-- Skeletabs core CSS -->
-    <link rel="stylesheet" type="text/css" href="./dist/skeletabs.css" />
+    <link rel="stylesheet" type="text/css" href="./dist/skeletabs.min.css" />
     <!-- Demo page -->
     <link rel="stylesheet" type="text/css" href="./docs/assets/style.css" />
     <!-- Code highlighter -->
@@ -68,22 +68,22 @@
                         <li>Choose the default active tab.</li>
                         <li>Disable one or multiple tabs.</li>
                         <li>Equalize all panels height.</li>
-                        <li>Assign your own class names for the entire structure.</li>
+                        <li>Customize every DOM element's class name.</li>
                         <li>Swap to accordion layout at a custom breakpoint.</li>
                         <li>Choose whether to navigate by clicking or by hovering.</li>
                         <li>Enable keyboard navigation for keyboard users.</li>
-                        <li>Update the hash in the browser URL.</li>
-                        <li>Set autoplay option and use it like a carousel.</li>
-                        <li>Animate switching action(customizable).</li>
+                        <li>Update the window URL hash.</li>
+                        <li>Make it autorotate like a carousel.</li>
+                        <li>Animate panels while switching(customizable).</li>
                         <li>Bind your own function to `tabswitch` event.</li>
                     </ul>
                 </figure>
 
                 <h3>Can I use this for free?</h3>
-                <p>Sure you do. This plugin is licensed under <a rel="external" href="https://github.com/findawayer/Skeletabs/blob/master/LICENSE" target="_blank">MIT license</a> meaning you have full rights to use it, edit it, distrubte it and so on, as long as you include the copyright notice to your copy.</p>
+                <p>Sure you do. This plugin is released under <a rel="external" href="https://github.com/findawayer/Skeletabs/blob/master/LICENSE" target="_blank">MIT license</a> granting you full access to use it, edit it, distrubte it and so on, as long as you include the copyright notice to your copy.</p>
 
                 <h3>Are there any dependencies for this plugin?</h3>
-                <p>So far nothing else than the jQuery library. Skeletabs is being tested with versions of jQuery 1.x through 3.x(latest revision of each set) &mdash; you only have to have one of them installed. That's it.</p>
+                <p>So far nothing else than the jQuery library. Skeletabs is being tested with the latest versions of jQuery 1.x through 3.x &mdash; you only have to have one of them installed. That's it.</p>
 
                 <h3>How far can I go with IE?</h3>
                 <p>Bundled CSS and JS will work in IE8.</p>
@@ -111,16 +111,16 @@
 <!--                  -->&lt;html>
 <!--                  -->    &lt;head>
 <!--                  -->
-<!--                  -->        &lt;link rel="stylesheet" type="text/css" href="PATH/TO/STYLESHEET/skeletabs.css" />
+<!--                  -->        &lt;link rel="stylesheet" type="text/css" href="PATH/TO/STYLESHEET/skeletabs.min.css" />
 <!--                  -->    &lt;/head>
 <!--                  -->    &lt;body>
 <!--                  -->
-<!--                  -->        &lt;script type="text/javascript" src="PATH/TO/SCRIPT/skeletabs.js">&lt;/script>
+<!--                  -->        &lt;script type="text/javascript" src="PATH/TO/SCRIPT/skeletabs.min.js">&lt;/script>
 <!--                  -->    &lt;/body>
 <!--                  -->&lt;/html></code></pre>
                     </li>
-                    <li>If you have to support IE8, please use <code>skeletabs.core.js</code> instead of <code>skeletabs.js</code>. (The webpack-bundled JS includes lines that cannot run in IE8.)</li>
                 </ol>
+                <p><strong>Caution:</strong> If you have to support IE8, please use uncompressed version(<code>skeletabs.css</code> &amp; <code>skeletabs.js</code>). (Minification breaks in IE8)</p>
                 </figure>
             </section>
 
@@ -762,6 +762,13 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <h3>Custom namespace</h3>
+                    <p>Skeletabs offers <code>"tabswitch"</code> namespace .</p>
+
+                    <pre><code class="language-js"><!--
+                 -->$("#myTabs").skeletabs("getCurrentTab"); // returns $("#myTabs .skltbs-panel.is-active");<!--
+                 --></code></pre>
                 </article>
             </section>
 
@@ -778,7 +785,7 @@
     <!-- jQuery 1 -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <!-- Skeletabs script (required) -->
-    <script type="text/javascript" src="./dist/skeletabs.js"></script>
+    <script type="text/javascript" src="./dist/skeletabs.min.js"></script>
     <script type="text/javascript" src="./docs/assets/script.js"></script>
     <script type="text/javascript" src="./docs/assets/prism/prism.js"></script>
 
