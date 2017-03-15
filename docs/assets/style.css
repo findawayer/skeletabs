@@ -164,8 +164,7 @@ img {
     margin: .25em .25em .25em 0;
     padding: 1em;
     vertical-align: middle;
-    line-height: 1.5;
-    font-weight: 300;
+    line-height: 1.2;
     text-shadow: 0 0 1px rgba(27, 27, 27, .1);
     cursor: pointer;
 }
