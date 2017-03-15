@@ -1,0 +1,7 @@
+# Files
+*.bat
+#.zip
+
+# Folders
+node_modules
+test

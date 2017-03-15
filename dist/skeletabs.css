@@ -1,0 +1,360 @@
+/*!----------------------------------------------------------------------
+    Skeletabs
+    Basic, accessible, responsive and freely restylable jQuery tabs
+ ----------------------------------------------------------------------*/
+/*! Skeletabs: Core (required)
+ ----------------------------------------------------------------------*/
+.skltbs-tab-group {
+    margin: 0;
+    padding: 0;
+}
+
+.skltbs-tab-group::after {
+    clear: both;
+    display: table;
+    content: "";
+}
+
+.skltbs-tab-item {
+    display: block;
+    float: left;
+}
+
+.skltbs-tab {
+    display: block;
+    text-decoration: none;
+    touch-action: manipulation;
+}
+
+.is-active > .skltbs-tab {
+    touch-action: none;
+}
+
+.is-disabled > .skltbs-tab {
+    cursor: default;
+    pointer-events: none;
+    touch-action: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.skltbs-panel-group {
+    clear: both;
+}
+
+.skltbs-panel-heading {
+    margin: 0;
+    font: inherit;
+}
+
+/*! Skeletabs: Animation (optional if you don't need animation)
+ ----------------------------------------------------------------------*/
+.skltbs.has-animation .skltbs-tab {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.skltbs.has-animation .skltbs-panel-group {
+    transition: height 0.3s ease-in-out;
+    transition-delay: 0.3s;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.skltbs.has-animation .skltbs-panel {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    z-index: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.skltbs.has-animation .skltbs-panel.is-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.skltbs.has-animation .skltbs-panel.is-getting-in, .skltbs.has-animation .skltbs-panel.is-getting-out {
+    visibility: visible;
+}
+
+.skltbs.has-animation.fade .skltbs-panel.is-getting-out {
+    -webkit-animation: fade 0.3s ease-in-out forwards;
+    animation: fade 0.3s ease-in-out forwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.skltbs.has-animation.fade .skltbs-panel.is-getting-in {
+    -webkit-animation: fade 0.3s ease-in-out forwards;
+    animation: fade 0.3s ease-in-out forwards;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+
+.skltbs.has-animation.fade-scale .skltbs-panel.is-getting-out {
+    -webkit-animation: fade-scale-out 0.3s ease-in-out forwards;
+    animation: fade-scale-out 0.3s ease-in-out forwards;
+}
+
+.skltbs.has-animation.fade-scale .skltbs-panel.is-getting-in {
+    -webkit-animation: fade-scale-in 0.3s ease-in-out forwards;
+    animation: fade-scale-in 0.3s ease-in-out forwards;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+
+.skltbs.has-animation.drop .skltbs-panel.is-getting-out {
+    -webkit-animation: slide-down-out 0.4s ease-in-out forwards;
+    animation: slide-down-out 0.4s ease-in-out forwards;
+}
+
+.skltbs.has-animation.drop .skltbs-panel.is-getting-in {
+    -webkit-animation: scale-up 0.4s ease-in-out forwards;
+    animation: scale-up 0.4s ease-in-out forwards;
+}
+
+.skltbs.has-animation.rotate .skltbs-panel-group {
+    overflow: hidden;
+}
+
+.skltbs.has-animation.rotate .skltbs-panel.is-getting-out {
+    -webkit-animation: rotate-out 0.5s ease-in-out forwards;
+    animation: rotate-out 0.5s ease-in-out forwards;
+}
+
+.skltbs.has-animation.rotate .skltbs-panel.is-getting-in {
+    -webkit-animation: rotate-in 0.5s ease-in-out forwards;
+    animation: rotate-in 0.5s ease-in-out forwards;
+}
+
+@-webkit-keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fade-scale-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes fade-scale-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes fade-scale-out {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95);
+    }
+}
+
+@keyframes fade-scale-out {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95);
+    }
+}
+
+@-webkit-keyframes scale-up {
+    from {
+        -webkit-transform: scale(0.5);
+        -ms-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes scale-up {
+    from {
+        -webkit-transform: scale(0.5);
+        -ms-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes slide-down-out {
+    from {
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 50%, 0);
+        -ms-transform: translate3d(0, 50%, 0);
+        transform: translate3d(0, 50%, 0);
+    }
+}
+
+@keyframes slide-down-out {
+    from {
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 50%, 0);
+        -ms-transform: translate3d(0, 50%, 0);
+        transform: translate3d(0, 50%, 0);
+    }
+}
+
+@-webkit-keyframes rotate-in {
+    from {
+        -webkit-transform: translate3d(50%, 0, 0);
+        -ms-transform: translate3d(50%, 0, 0);
+        transform: translate3d(50%, 0, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes rotate-in {
+    from {
+        -webkit-transform: translate3d(50%, 0, 0);
+        -ms-transform: translate3d(50%, 0, 0);
+        transform: translate3d(50%, 0, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@-webkit-keyframes rotate-out {
+    from {
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(-50%, 0, 0);
+        -ms-transform: translate3d(-50%, 0, 0);
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+@keyframes rotate-out {
+    from {
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(-50%, 0, 0);
+        -ms-transform: translate3d(-50%, 0, 0);
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+/*! Skeletabs: Default theme (optional if you want a personalized theme)
+ ----------------------------------------------------------------------*/
+.skltbs {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.skltbs-tab-item {
+    margin: 0 3px 3px 0;
+}
+
+.skltbs-tab {
+    background: #e1e1e1;
+    color: #2e2e2e;
+    padding: 1em 1.2em;
+}
+
+.is-active > .skltbs-tab {
+    background: #f48434;
+    color: white;
+    text-shadow: 0 0 1px #d05d0b;
+}
+
+.is-disabled > .skltbs-tab {
+    background: #f2f2f2;
+    color: #c7c7c7;
+}
+
+.skltbs-tab:focus {
+    outline: 0;
+    box-shadow: inset 0 0 0 2px #d05d0b;
+}
+
+.skltbs-panel-group {
+    background: white;
+}
+
+.skltbs-panel {
+    background: white;
+    padding: 1em 1.2em;
+    box-sizing: border-box;
+}
+
+.skltbs-panel:focus {
+    outline: 0;
+    box-shadow: inset 0 0 0 2px #f8b07d;
+}

@@ -1,0 +1,59 @@
+/*! Skeletabs: Core (required)
+ ----------------------------------------------------------------------*/
+
+// container
+.skltbs {
+    // tab group: <ul/>
+    &-tab-group {
+        margin: 0;
+        padding: 0;
+
+        &::after {
+            clear: both;
+            display: table;
+            content: "";
+        }
+    }
+
+    // tab item: <li/>
+    &-tab-item {
+        display: block;
+        float: left;
+    }
+
+    // clickable tab: <a/>
+    &-tab {
+        display: block;
+        text-decoration: none;
+        touch-action: manipulation;
+
+        .is-active > & {
+            touch-action: none;
+        }
+
+        .is-disabled > & {
+            cursor: default;
+            pointer-events: none;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    }
+
+    // contents group
+    &-panel-group {
+        clear: both;
+    }
+
+    // contents to toggle
+    &-panel {
+
+        // clickable heading in panel
+        &-heading {
+            margin: 0;
+            font: inherit;
+        }
+    }
+}

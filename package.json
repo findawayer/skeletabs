@@ -1,0 +1,32 @@
+{
+  "name": "skeletabs",
+  "version": "1.0.0",
+  "description": "Basic, accessible, responsive and freely restylable tabs.",
+  "main": "src/js/skeletabs.js",
+  "scripts": {
+    "build": "webpack ./src/js/skeletabs.js ./dist/skeletabs.js"
+  },
+  "keywords": [
+    "jQuery",
+    "jquery-plugin",
+    "ui",
+    "tabs",
+    "responsive"
+  ],
+  "author": "Tae Sung LIM (findawayer)",
+  "license": "MIT license",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "css-loader": "^0.26.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.13.2",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "jquery": "^1.12.4"
+  }
+}

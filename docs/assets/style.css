@@ -1,0 +1,279 @@
+ /*! Demo page style | Skeletabs
+ ----------------------------------------------------------------------*/
+
+/* Base (reset + elements basic rules)
+ ----------------------------------------*/
+
+/* root, body */
+html {
+    margin: 0;
+    font-size: 100%;
+}
+body {
+    margin: 0;
+    line-height: 1.8;
+    font-family: "Roboto", "Trebuchet MS", Helvetica, Arial, sans-serif;
+}
+
+/* sections */
+article,
+aside,
+header,
+main,
+menu,
+nav,
+section,
+footer {
+    display: block;
+}
+
+/* headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 2em 0 .5em;
+    line-height: 1.2;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 162.5%; /* 26px */
+}
+h2 {
+    font-size: 150%; /* 24px */
+}
+h3 {
+    font-size: 125%; /* 20px */
+}
+h4 {
+    font-size: 112.5%; /* 18px */
+}
+
+/* links */
+a {
+    background-color: transparent;
+    color: #f48434;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* strong texts */
+b, strong {
+    font-weight: bold;
+}
+
+/* horizontal lines */
+hr {
+    background: rgba(0, 0, 0, .5);
+    border: 0;
+    height: 1px;
+}
+
+/* figures */
+figure {
+    margin: 1em 0;
+}
+
+/* source code */
+code,
+pre {
+    background: #f8f7f7;
+    font-family: "Roboto mono", monospace, monospace;
+    font-size: 87.5%; /* 14px */
+}
+
+pre {
+    padding: 1em;
+}
+
+/* lists */
+ul {
+    list-style: disc;
+}
+
+/* multimedia */
+img {
+    border: 0;
+}
+
+
+/* Layout
+ ----------------------------------------*/
+
+/* wrapper setting a maximum width to its content */
+.l-holder {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+/* header */
+.l-header {
+    width: 100%;
+    position: relative;
+}
+
+/* content */
+.l-content {
+    min-height: 100vh;
+    padding: 50px 20px;
+}
+
+/* footer */
+.l-footer {
+    padding: 40px 20px;
+}
+
+
+/* Modules
+ ----------------------------------------*/
+
+/* wrapper that contains floating elements */
+.group::after {
+    clear: both;
+    display: table;
+    content: "";
+}
+
+/* navigations */
+.nav {}
+
+.nav-inner {
+    display: table;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.nav-item {
+    display: table-cell;
+}
+
+.nav-link {
+    display: inline-block;
+}
+
+/* buttons */
+.ui-button {
+    background: #6bb663;
+    box-shadow: 0 2px 5px 0 rgba(27, 27, 27, .1);
+    color: white;
+    display: inline-block;
+    margin: .25em .25em .25em 0;
+    padding: 1em;
+    vertical-align: middle;
+    line-height: 1.5;
+    font-weight: 300;
+    text-shadow: 0 0 1px rgba(27, 27, 27, .1);
+    cursor: pointer;
+}
+
+.ui-button:hover {
+    box-shadow: none;
+}
+
+.ui-button:active {
+    position: relative;
+    top: 1px;
+}
+
+/* formatted tables */
+.formatted-table {
+    border: 0;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.formatted-table th,
+.formatted-table td {
+    border: 1px solid #e9e9e8;
+    border-width: 1px 0;
+    padding: .5em .75em;
+}
+
+.formatted-table th {
+    background: #f8f7f7;
+}
+
+/* keyboard icon */
+.kbd {
+    background: #efecea;
+    border: 1px solid #;
+    padding: .3em .4em;
+}
+
+
+/* Theme
+ ----------------------------------------*/
+
+/* body */
+body {
+    background: white;
+    color: #3e3e3f;
+    min-width: 320px;
+}
+
+/* header */
+#header {
+    background: #e04f5f;
+    box-shadow: 0 2px 5px 0 rgba(27, 27, 27, .1);
+    color: white;
+    text-shadow: 0 0 1px rgba(27, 27, 27, .1);
+}
+
+#headerNav .nav-link {
+    color: white;
+    height: 100px;
+    padding: 0 20px;
+    line-height: 100px;
+    font-size: 112.5%;
+}
+
+/* content */
+#firstHeading {
+    margin-top: 0;
+}
+
+.api-table th {
+    text-align: left;
+}
+
+.api-table .name {
+    width: 9em;
+}
+.api-table .type {
+    width: 5em;
+}
+.api-table .def {
+    width: 9em;
+}
+
+.api-table .desc p {
+    margin: 0;
+}
+.api-table .desc p + p {
+    margin-top: .5em;
+}
+.api-table .keyboard {
+    margin: .5em 0 0;
+    padding-left: 0;
+}
+.api-table .keyboard-input {
+    clear: left;
+    float: left;
+    display: inline-block;
+    width: 2em;
+}
+.api-table .keyboard-action {
+    float: left;
+    display: inline-block;
+}
+
+/* footer */
+#footer {
+    background: #3e3e3f;
+    color: white;
+    text-align: center;
+}
