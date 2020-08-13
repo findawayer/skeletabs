@@ -3,217 +3,202 @@
 
 // variables ----------------------------------------------------------------------
 
-$animation-duration: .3s;
+$animation-duration: 0.3s;
 $animation-easing: ease-in-out;
 
 // mixins -------------------------------------------------------------------------
 
 @mixin set-animation($name: fade, $duration: $animation-duration) {
-    -webkit-animation: $name $duration ease-in-out forwards;
-    animation: $name $duration ease-in-out forwards;
+  animation: $name $duration ease-in-out forwards;
 }
 
 @mixin delay-animation($time: $animation-duration) {
-    -webkit-animation-delay: $time;
-    animation-delay: $time;
+  animation-delay: $time;
 }
 
 @mixin reverse-animation {
-    // NOTE. reverse cannot be applied to complex animations (bug?)
-    -webkit-animation-direction: reverse;
-    animation-direction: reverse;
+  // NOTE. reverse cannot be applied to complex animations (bug?)
+  animation-direction: reverse;
 }
 
 @mixin hardware-acceleration {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 @mixin transform($value) {
-    -webkit-transform: $value;
-    -ms-transform: $value;
-    transform: $value;
+  -ms-transform: $value;
+  transform: $value;
 }
 
 @mixin transform-origin($value) {
-    -webkit-transform-origin: $value;
-    -ms-transform-origin: $value;
-    transform-origin: $value;
-}
-
-@mixin keyframes($name) {
-    @-webkit-keyframes #{$name} {
-        @content;
-    }
-    @keyframes #{$name} {
-        @content;
-    }
+  -ms-transform-origin: $value;
+  transform-origin: $value;
 }
 
 // settings -------------------------------------------------------------------------
 
 .skltbs.has-animation {
+  // basic
+  .skltbs-tab {
+    transition: background-color $animation-duration $animation-easing,
+      color $animation-duration $animation-easing;
+  }
 
-    // basic
-    .skltbs-tab {
-        transition: background-color $animation-duration $animation-easing,
-                    color $animation-duration $animation-easing;
+  .skltbs-panel-group {
+    transition: height $animation-duration $animation-easing;
+    transition-delay: $animation-duration;
+    @include hardware-acceleration;
+  }
+
+  .skltbs-panel {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    z-index: 0;
+    @include hardware-acceleration;
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 1;
     }
 
+    &.is-getting-in,
+    &.is-getting-out {
+      visibility: visible;
+    }
+  }
+
+  // per effect
+  &.fade {
+    .skltbs-panel {
+      &.is-getting-out {
+        @include set-animation(fade);
+        @include reverse-animation;
+      }
+
+      &.is-getting-in {
+        @include set-animation(fade);
+        @include delay-animation;
+      }
+    }
+  }
+
+  &.fade-scale {
+    .skltbs-panel {
+      &.is-getting-out {
+        @include set-animation(fade-scale-out);
+      }
+
+      &.is-getting-in {
+        @include set-animation(fade-scale-in);
+        @include delay-animation;
+      }
+    }
+  }
+
+  &.drop {
+    .skltbs-panel {
+      &.is-getting-out {
+        @include set-animation(slide-down-out, 0.4s);
+      }
+
+      &.is-getting-in {
+        @include set-animation(scale-up, 0.4s);
+      }
+    }
+  }
+
+  &.rotate {
     .skltbs-panel-group {
-        transition: height $animation-duration $animation-easing;
-        transition-delay: $animation-duration;
-        @include hardware-acceleration;
+      overflow: hidden; // focus outline is likely to be cut. example workaround in default theme
     }
 
     .skltbs-panel {
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        visibility: hidden;
-        z-index: 0;
-        @include hardware-acceleration;
+      &.is-getting-out {
+        @include set-animation(rotate-out, 0.5s);
+      }
 
-        &.is-active {
-            opacity: 1;
-            visibility: visible;
-            z-index: 1;
-        }
-
-        &.is-getting-in,
-        &.is-getting-out {
-            visibility: visible;
-        }
+      &.is-getting-in {
+        @include set-animation(rotate-in, 0.5s);
+      }
     }
-    
-    // per effect
-    &.fade {
-        .skltbs-panel {
-            &.is-getting-out {
-                @include set-animation(fade);
-                @include reverse-animation;
-            }
-
-            &.is-getting-in {
-                @include set-animation(fade);
-                @include delay-animation;
-            }
-        }
-    }
-    
-    &.fade-scale {
-        .skltbs-panel {
-            &.is-getting-out {
-                @include set-animation(fade-scale-out);
-            }
-
-            &.is-getting-in {
-                @include set-animation(fade-scale-in);
-                @include delay-animation;
-            }
-        }
-    }
-    
-    &.drop {
-        .skltbs-panel {
-            &.is-getting-out {
-                @include set-animation(slide-down-out, .4s);
-            }
-
-            &.is-getting-in {
-                @include set-animation(scale-up, .4s);
-            }
-        }
-    }
-    
-    &.rotate {
-        .skltbs-panel-group {
-            overflow: hidden; // focus outline is likely to be cut. example workaround in default theme
-        }
-
-        .skltbs-panel {
-            &.is-getting-out {
-                @include set-animation(rotate-out, .5s);
-            }
-
-            &.is-getting-in {
-                @include set-animation(rotate-in, .5s);
-            }
-        }
-    }
-
+  }
 }
 
 // keyframes ----------------------------------------------------------------------
 
 // fade
-@include keyframes(fade) {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 // fade-scale
-@include keyframes(fade-scale-in) {
-    0% {
-        opacity: 0;
-        @include transform(scale(0.95));
-    }
-    100% {
-        opacity: 1;
-        @include transform(scale(1));
-    }
+@keyframes fade-scale-in {
+  0% {
+    opacity: 0;
+    @include transform(scale(0.95));
+  }
+  100% {
+    opacity: 1;
+    @include transform(scale(1));
+  }
 }
 
-@include keyframes(fade-scale-out) {
-    0% {
-        opacity: 1;
-        @include transform(scale(1));
-    }
-    100% {
-        opacity: 0;
-        @include transform(scale(0.95));
-    }
+@keyframes fade-scale-out {
+  0% {
+    opacity: 1;
+    @include transform(scale(1));
+  }
+  100% {
+    opacity: 0;
+    @include transform(scale(0.95));
+  }
 }
 
 // drop
-@include keyframes(scale-up) {
-    from {
-        @include transform(scale(0.5));
-    }
-    to {
-        opacity: 1;
-        @include transform(scale(1));
-    }
+@keyframes scale-up {
+  from {
+    @include transform(scale(0.5));
+  }
+  to {
+    opacity: 1;
+    @include transform(scale(1));
+  }
 }
 
-@include keyframes(slide-down-out) {
-    from {}
-    to {
-        opacity: 0;
-        @include transform(translate3d(0, 50%, 0));
-    }
+@keyframes slide-down-out {
+  from {
+  }
+  to {
+    opacity: 0;
+    @include transform(translate3d(0, 50%, 0));
+  }
 }
 
 // rotate
-@include keyframes(rotate-in) {
-    from {
-        @include transform(translate3d(50%, 0, 0));
-    }
-    to {
-        opacity: 1;
-        @include transform(translate3d(0, 0, 0));
-    }
+@keyframes rotate-in {
+  from {
+    @include transform(translate3d(50%, 0, 0));
+  }
+  to {
+    opacity: 1;
+    @include transform(translate3d(0, 0, 0));
+  }
 }
 
-@include keyframes(rotate-out) {
-    from {}
-    to {
-        opacity: 0;
-        @include transform(translate3d(-50%, 0, 0));
-    }
+@keyframes rotate-out {
+  from {
+  }
+  to {
+    opacity: 0;
+    @include transform(translate3d(-50%, 0, 0));
+  }
 }
