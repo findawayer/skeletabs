@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended", // eslint
+    "plugin:prettier/recommended", // eslint-plugin-prettier
+    "prettier" // eslint-config-prettier
+  ],
+  "rules": {
+    "multiline-ternary": ["error", "always-multiline"]
+  }
+}

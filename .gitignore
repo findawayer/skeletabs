@@ -1,7 +1,5 @@
-# Files
-*.bat
-#.zip
-
-# Folders
+# packages
 node_modules
-test
+
+# logs
+*.log
