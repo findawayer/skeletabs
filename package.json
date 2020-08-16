@@ -2,10 +2,11 @@
   "name": "skeletabs",
   "version": "1.0.0",
   "description": "Basic, accessible, responsive and freely restyleable tabs.",
-  "main": "src/js/skeletabs.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "webpack",
-    "dev": "set NODE_ENV=development&& webpack-dev-server"
+    "dev": "set NODE_ENV=development&& webpack-dev-server",
+    "eslint": "eslint --fix --ext .js"
   },
   "files": [
     "dist/skeletabs.js",
@@ -34,19 +35,30 @@
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.1",
-    "eslint": "^7.6.0",
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "14.2.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "2.21.2",
     "eslint-plugin-prettier": "^3.1.4",
     "mini-css-extract-plugin": "^0.10.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.0.5",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.3",
+    "string-replace-loader": "^2.3.0",
     "style-loader": "^1.2.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.8"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "browserslist": [
     "last 1 version",

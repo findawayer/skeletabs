@@ -1,20 +1,37 @@
+/* eslint-disable global-require */
 // Node.js path helper
 const path = require('path');
-// allow access to built-in plugins
-const webpack = require('webpack');
 // CSS extractor
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // custom JS optimizer
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // project metadata
 const pkg = require('./package.json');
+/* eslint-disable global-require */
 
-// webpack configurations
+// Pre-defined string-replace-loader template
+// 1. convert {{version}} to `version` value in package.json
+const stringReplaceLoader = {
+  loader: 'string-replace-loader',
+  options: {
+    search: /{{version}}/g,
+    replace: pkg.version,
+  },
+};
+
+// Inject processed stylesheets in a dynamic way.
+// - development: inject css into DOM as <style /> node
+// - production: extract as separate CSS file for distribution
+const styleInjector =
+  process.env.NODE_ENV === 'development'
+    ? 'style-loader'
+    : MiniCssExtractPlugin.loader;
+
+// Webpack configurations
 let config = {
   mode: 'production',
   entry: path.join(__dirname, pkg.main),
   output: {
-    // use the entry chunk name as the file name
     filename: `${pkg.name}.js`,
     path: path.resolve(__dirname, 'dist'),
   },
@@ -28,26 +45,14 @@ let config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
+        use: ['babel-loader', stringReplaceLoader],
       },
       {
         test: /\.scss$/,
         use: [
-          // inject css into DOM as <style /> node
-          // 'style-loader',
-          // extract as separate CSS file
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: process.env.NODE_ENV === 'development',
-            },
-          },
-          // translate CSS into CommonJS
+          styleInjector,
+          stringReplaceLoader,
+          // interprete CSS to commonJS
           'css-loader',
           // process with postcss (including autoprefix)
           {
@@ -78,12 +83,15 @@ let config = {
 if (process.env.NODE_ENV === 'development') {
   config = Object.assign(config, {
     mode: 'development',
+    output: {
+      filename: `${pkg.name}.js`,
+      path: path.resolve(__dirname, 'test'),
+    },
+    plugins: [],
+    optimization: {},
     devServer: {
-      contentBase: __dirname,
+      contentBase: path.resolve(__dirname, 'test'),
       hot: true,
-      open: {
-        app: ['Chrome', '--incognito'],
-      },
     },
     // source mapping
     devtool: 'eval-cheap-module-source-map',
