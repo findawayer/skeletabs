@@ -18,7 +18,7 @@ Skeletabs is an open source **jQuery plugin** that provides tabbed browsing feat
 ## Get started
 
 Please download [the latest version of Skeletabs](https://github.com/findawayer/Skeletabs/releases). Ready-to-use resources are located in `/dist` folder.
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -36,7 +36,7 @@ Please download [the latest version of Skeletabs](https://github.com/findawayer/
 
 ## HTML
 Skeletabs parses the HTML structure based on class attributes. Please assign relevant classes to your elements within the tree.
-```
+```html
 <div><!-- container -->
   <ul class="skltbs-tab-group"><!-- tabGroup -->
     <li class="skltbs-tab-item"><!-- tabItem -->
@@ -53,7 +53,7 @@ Skeletabs parses the HTML structure based on class attributes. Please assign rel
 </div>
 ```
 The plugin generates an `id` for all tabs and panels to meet the accessiblity requirements. (Unless they're already given one.)
-```
+```html
 <div class="skltbs-panel-group">
   <div class="wrapper">
     <div class="another-wrapper">
@@ -67,23 +67,23 @@ You can add any wrapping elements between the panelGroup and the panels. Please 
 
 ## CSS
 The plugin comes with a couple of built-in themes: light / dark. You can enable them just by adding a CSS class with `skltbs-theme-` prefix to the container element.
-```
+```html
 <!-- container -->
 <div class="skltbs-theme-light">...</div>
 ```
 Likewise, 4 different types of effect are available — fade / fade-toggle / drop / rotate — which can be applied using a `use-` prefixed class.
-```
+```html
 <!-- container -->
 <div class="skltbs-theme-light use-fade">...</div>
 ```
 
 ## JS
 Once DOM is ready, you can now initialize Skeletabs like next:
-```
+```js
 $('#container').skeletabs();
 ```
 And below is the configuration syntax for custom options:
-```
+```js
 $('#container').skeletabs({
   startIndex: 2
 });
@@ -91,21 +91,21 @@ $('#container').skeletabs({
 
 ## Autoinit without JS
 You can omit the JS portion descripbed above and activate Skeletabs by using `data-skeletabs` attribute of the container element.
-```
+```html
 <!-- container -->
 <div data-skeletabs>...</div>
 ```
 `data-skeletabs` attribute accepts a JSON object to configure custom options.
-```
+```html
 <!-- container -->
 <div data-skeletabs='{ "autoplay": true, "panelHeight": "adaptive" }'>...</div>
 ```
 `data-skeletabs-class` attributes is used to configure custom CSS class names.
-```
+```html
 <!-- container -->
 <div data-skeletabs-class='{ "panelGroup": "content", "panel": "section" }'>...</div>
 ```
-```
+```html
 <!-- container -->
 <div data-skeletabs-class="myprefix">...</div>
 ```
