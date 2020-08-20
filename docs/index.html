@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" prefix="og: http://ogp.me/ns#">
+<html lang="en" prefix="og: http://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://findawayer.github.io/Skeletabs/" />
     <link rel="manifest" href="./assets/manifest.json" />
     <title>Skeletabs</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" />
     <link rel="stylesheet" href="../dist/skeletabs.css" />
     <!-- <link rel="stylesheet" href="./assets/highlight/styles/github-gist.css" /> -->
     <link rel="stylesheet" href="./assets/style.css" />
@@ -34,7 +34,7 @@
             <button
               id="languageSelect"
               class="button mui-button has-dropdown"
-              title="언어 선택하기"
+              title="Select language"
               aria-controls="languageList"
               aria-haspopup="listbox"
               aria-labelledby="languageList languageSelect"
@@ -44,7 +44,7 @@
                   d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"
                 ></path>
               </svg>
-              <span class="button-text mui-button-text">한국어</span>
+              <span class="button-text mui-button-text">English</span>
               <svg class="mui-icon mui-icon-sm" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
               </svg>
@@ -55,13 +55,13 @@
               role="listbox"
               tabindex="-1"
               aria-labelledby="languageSelect"
-              aria-activedescendant="languageKr"
+              aria-activedescendant="languageEn"
             >
               <li class="dropdown-item">
-                <span id="languageKr" class="dropdown-link" role="option" aria-selected="true">한국어</span>
+                <span id="languageEn" class="dropdown-link" role="option" aria-selected="true">English</span>
               </li>
               <li class="dropdown-item">
-                <a id="languageEn" class="dropdown-link" href="index.html" hreflang="en" role="option">English</a>
+                <a id="languageKr" class="dropdown-link" href="korean.html" hreflang="ko" role="option">한국어</a>
               </li>
             </ul>
           </li>
@@ -70,8 +70,8 @@
               rel="external"
               href="https://github.com/findawayer/Skeletabs"
               class="button mui-button mui-icon-button"
-              title="GitHub에서 보기"
-              aria-label="GitHub에서 보기"
+              title="View on GitHub"
+              aria-label="View on GitHub"
             >
               <svg class="mui-icon mui-icon-sm" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -89,31 +89,33 @@
           <nav id="nav" class="nav">
             <ul class="nav-group">
               <li class="nav-item">
-                <a class="nav-link" href="#Introduction"><span class="hover-underline">Skeletabs란</span></a>
+                <a class="nav-link" href="#Introduction"><span class="hover-underline">About Skeletabs</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Get-started"><span class="hover-underline">시작하기</span></a>
+                <a class="nav-link" href="#Get-started"><span class="hover-underline">Get started</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Demo"><span class="hover-underline">예시</span></a>
+                <a class="nav-link" href="#Demo"><span class="hover-underline">Demo</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Options"><span class="hover-underline">옵션</span></a>
+                <a class="nav-link" href="#Options"><span class="hover-underline">Options</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Methods"><span class="hover-underline">메소드</span></a>
+                <a class="nav-link" href="#Methods"><span class="hover-underline">Methods</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Events"><span class="hover-underline">이벤트</span></a>
+                <a class="nav-link" href="#Events"><span class="hover-underline">Events</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Themes"><span class="hover-underline">테마</span></a>
+                <a class="nav-link" href="#Themes"><span class="hover-underline">Themes</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Transition-effects"><span class="hover-underline">애니메이션 효과</span></a>
+                <a class="nav-link" href="#Transition-effects"
+                  ><span class="hover-underline">Transition effects</span></a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#FAQ"><span class="hover-underline">자주 있는 질문</span></a>
+                <a class="nav-link" href="#FAQ"><span class="hover-underline">FAQ</span></a>
               </li>
             </ul>
           </nav>
@@ -123,20 +125,18 @@
         <div class="content-pad">
           <div class="content-holder clearfix">
             <section id="Introduction" class="section">
-              <h2>Skeletabs란</h2>
+              <h2>About Skeletabs</h2>
               <p>
-                Skeletabs(스켈레탭스)는 컨텐츠에
-                <a
-                  href="https://ko.wikipedia.org/wiki/%ED%83%AD_%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A7%95"
-                  rel="external noopener noreferrer"
-                  >탭 브라우징</a
+                Skeletabs is an open source jQuery plugin that provides
+                <a href="https://en.wikipedia.org/wiki/Tab_(interface)" rel="external noopener noreferrer"
+                  >tabbed browsing</a
                 >
-                기능을 부여해 주는 오픈 소스 jQuery 플러그인입니다. Skeletabs는 무엇보다도 <strong>접근성</strong>과
-                <strong>확장성</strong>을 중시하는 도구로, 스크린 리더와 키보드 사용자의 편의를 생각하며 개발자의
-                창의적인 응용을 장려하도록 만들어지고 있습니다.
+                feature to your web contents. It is focused on <strong>accessibility</strong> and
+                <strong>scalability</strong> above all else, and is designed to support convenience of screen readers
+                and keyboard users, as well as to encourage developers' creative uses.
               </p>
 
-              <div class="skltbs-theme-light js-skeletabs">
+              <div class="skltbs-theme-light" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -153,7 +153,7 @@
                 </ul>
                 <div class="skltbs-panel-group">
                   <div class="skltbs-panel">
-                    <div class="skltbs-theme-light js-skeletabs" data-options='{ "disabledIndex": -1 }'>
+                    <div class="skltbs-theme-light" data-skeletabs='{ "disabledIndex": -1 }'>
                       <ul class="skltbs-tab-group">
                         <li class="skltbs-tab-item">
                           <button class="skltbs-tab">Tab 1-1</button>
@@ -169,8 +169,7 @@
                         <div class="skltbs-panel">
                           <div
                             id="firstExampleInner"
-                            class="skltbs-theme-light js-skeletabs"
-                            data-options='{ "autoplay": true, "panelHeight": "adaptive" }'
+                            class="skltbs-theme-light"
                           >
                             <ul class="skltbs-tab-group">
                               <li class="skltbs-tab-item">
@@ -284,31 +283,31 @@
                 </div>
               </div>
 
-              <h3>지원하는 브라우저</h3>
+              <h3>Browser support</h3>
               <p>
-                Skeletabs는
+                Skeletabs works on all
                 <a href="https://caniuse.com/#feat=es5" rel="external noopener noreferrer">
-                  ECMAScript 5를 지원하는 모든 브라우저</a
-                >에서 올바르게 작동합니다. 압축된 소스 코드를 해석할 수 없는 IE 8 및 그 이하 버전은 지원하지 않습니다.
+                  ECMAScript 5 compliant browsers</a
+                >. We have no plan to support IE 8 and prior that are unable to parse compressed source codes.
               </p>
 
-              <h3>어느 버전의 jQuery가 필요한가요?</h3>
+              <h3>Which version of jQuery do I need?</h3>
               <p>
-                1.7.0 이상의 버전에서 사용 가능합니다. (3.x 이상에서 제공되는 slim 버전은 사용할 수 없습니다.)
+                v1.7.0 and higher versions are supported. (slim versions provided with v3.x will not work.)
               </p>
             </section>
 
             <section id="Get-started" class="section">
-              <h2>시작하기</h2>
+              <h2>Get started</h2>
               <p>
                 <a class="button button-primary" rel="external" href="https://github.com/findawayer/Skeletabs/releases"
-                  >최신 패키지 받기</a
+                  >Find the latest release</a
                 >
               </p>
 
               <p>
-                최신 버전의 Skeletabs를 다운로드해 주세요. 바로 사용 가능한 리소스는 <code>/dist</code> 경로에서 찾을 수
-                있습니다.
+                Please download the latest version of Skeletabs. Ready-to-use resources are located in
+                <code>/dist</code> folder.
               </p>
 
               <pre><code class="html"><!--
@@ -323,117 +322,119 @@
   &lt;/body>
 &lt;/html></code></pre>
               <ul>
-                <li>다운받은 리소스를 위와 같이 삽입해 주세요.</li>
-                <li>jQuery는 Skeletabs보다 먼저 불러져야 합니다.</li>
+                <li>Embed downloaded resources like above.</li>
+                <li>Skeletabs expects jQuery to be loaded beforehand.</li>
                 <li>
-                  CSS 파일은 주관적인 디자인과 애니메이션 효과를 포함하고 있습니다. 커스텀 디자인을 사용하고자 할 경우,
-                  CSS는 삽입하지 않아도 됩니다.
+                  The CSS file contains opinionated themes and effects. You don't need to include it if you are going to
+                  create your own look and feel.
                 </li>
               </ul>
 
               <h3>HTML</h3>
               <p>
-                Skeletabs는 <code>class</code>를 토대로 HTML 구조를 해석합니다. 트리 안의 각 엘리먼트에 알맞은 class를
-                할당해 주세요.
+                Skeletabs parses the HTML structure based on <code>class</code> attributes. Please assign relevant
+                classes to your elements within the tree.
               </p>
               <pre><code class="html"><!--
   -->&lt;div>&lt;!-- container --&gt;
   &lt;ul class="skltbs-tab-group">&lt;!-- tabGroup --&gt;
     &lt;li class="skltbs-tab-item">&lt;!-- tabItem --&gt;
-      &lt;button class="skltbs-tab">{{탭 1}}&lt;/button>&lt;!-- tab --&gt;
+      &lt;button class="skltbs-tab">{{Tab 1}}&lt;/button>&lt;!-- tab --&gt;
     &lt;/li>
     &lt;li class="skltbs-tab-item">
-      &lt;button class="skltbs-tab">{{탭 2}}&lt;/button>
+      &lt;button class="skltbs-tab">{{Tab 2}}&lt;/button>
     &lt;/li>
   &lt;/ul>
   &lt;div class="skltbs-panel-group">&lt;!-- panelGroup --&gt;
-    &lt;div class="skltbs-panel">{{패널 1}}&lt;/div>&lt;!-- panel --&gt;
-    &lt;div class="skltbs-panel">{{패널 2}}&lt;/div>
+    &lt;div class="skltbs-panel">{{Panel 1}}&lt;/div>&lt;!-- panel --&gt;
+    &lt;div class="skltbs-panel">{{Panel 2}}&lt;/div>
   &lt;/div>
 &lt;/div></code></pre>
               <p>
-                웹 접근성을 위해 모든 tab 및 panel에는 <code>id</code>가 자동적으로 추가됩니다. (이미 id가 있을 경우
-                해당 id를 유지합니다.)
+                The plugin generates an <code>id</code> for all tabs and panels to meet the accessiblity requirements.
+                (Unless they're already given one.)
               </p>
 
               <pre><code class="html"><!--
   -->&lt;div class="skltbs-panel-group">
   &lt;div class="wrapper">
     &lt;div class="another-wrapper">
-      &lt;div class="skltbs-panel">{{패널 1}}&lt;/div>
-      &lt;div class="skltbs-panel">{{패널 2}}&lt;/div>
+      &lt;div class="skltbs-panel">{{Panel 1}}&lt;/div>
+      &lt;div class="skltbs-panel">{{Panel 2}}&lt;/div>
     &lt;/div>
   &lt;/div>
 &lt;/div></code></pre>
               <p>
-                panelGroup과 panel 사이에는 다른 엘리먼트가 존재할 수 있습니다. 단, panel들이 이웃하도록 배치해 주세요.
+                You can add any wrapping elements between the panelGroup and the panels. Please note that panels should
+                stay siblings.
               </p>
 
               <h3>CSS</h3>
               <p>
-                플러그인 안에는 light / dark 2개의 기본 테마를 포함되어 있습니다. 컨테이너 엘리먼트에
-                <code>skltbs-theme-</code>가 접두된 CSS class를 추가해서 테마를 활성화할 수 있습니다.
+                The plugin comes with a couple of built-in themes: light / dark. You can enable them just by adding a
+                CSS class with <code>skltbs-theme-</code> prefix to the container element.
               </p>
               <pre><code class="html"><!--
 -->&lt;!-- container --&gt;
 &lt;div class="skltbs-theme-light">...&lt;/div></code></pre>
               <p>
-                애니메이션은 fade / fade-toggle / drop / rotate 4가지가 제공되며, <code>use-</code>가 접두된 class를
-                통해 사용 가능합니다.
+                Likewise, 4 different types of effect are available &mdash; fade / fade-toggle / drop / rotate &mdash;
+                which can be applied using a <code>use-</code> prefixed class.
               </p>
               <pre><code class="html"><!--
 -->&lt;!-- container --&gt;
 &lt;div class="skltbs-theme-light use-fade">...&lt;/div></code></pre>
               <p>
-                보다 자세한 정보는 <a href="#Themes">테마</a> 그리고
-                <a href="#Transition-effects">애니메이션 효과</a> 섹션을 읽어주세요.
+                For more information, please refer to the <a href="#Themes">theme</a> and
+                <a href="#Transition-effects">transition effects</a> section.
               </p>
 
               <h3>JS</h3>
               <p>
+                Once
                 <a href="https://learn.jquery.com/using-jquery-core/document-ready/" rel="external noopener noreferrer"
-                  >DOM이 준비된 후</a
-                >, 다음과 같이 Skeletabs를 활성화해 주세요.
+                  >DOM is ready</a
+                >, you can now initialize Skeletabs like next:
               </p>
               <pre><code class="javascript">$('#container').skeletabs();</code></pre>
-              <p>사용자 옵션은 다음과 같이 설정 가능합니다.</p>
+              <p>And below is the configuration syntax for custom options:</p>
               <pre><code class="javascript"><!--
 -->$('#container').skeletabs({
   startIndex: 2
 });</code></pre>
 
-              <h3>JS 없이 자동 활성화</h3>
-              <p>위에 소개된 JS 부분을 생략하고, 컨테이너 엘리먼트에 <code>data-skeletabs</code> 속성을 사용해 Skeletabs를 활성화시킬 수 있습니다.</p>
+              <h3>Autoinit without JS</h3>
+              <p>You can omit the JS portion descripbed above and activate Skeletabs by using <code>data-skeletabs</code> attribute of the container element.</p>
               <pre><code class="html"><!--
 -->&lt;!-- container --&gt;
 &lt;div data-skeletabs>...&lt;/div></code></pre>
-              <p>옵션은 다음과 같이 <code>data-skeletabs</code> 속성에 JSON 객체를 사용해 전달할 수 있습니다.</p>
+              <p><code>data-skeletabs</code> attribute accepts a JSON object to configure custom options.</p>
               <pre><code class="html"><!--
 -->&lt;!-- container --&gt;
 &lt;div data-skeletabs='{ "autoplay": true, "panelHeight": "adaptive" }'>...&lt;/div></code></pre>
-              <p>CSS 클래스는 <code>data-skeletabs-class</code> 속성을 통해 전달할 수 있습니다.</p>
+              <p><code>data-skeletabs-class</code> attributes is used to configure custom CSS class names.</p>
               <pre><code class="html"><!--
 -->&lt;!-- container --&gt;
 &lt;div data-skeletabs-class='{ "panelGroup": "content", "panel": "section" }'>...&lt;/div></code></pre>
-              <ul>
-                <li>JSON 객체 &mdash; 객체의 키에 맞는 클래스명을 변경합니다.</li>
-                <li>문자열 &mdash; <code>skltbs</code> 접두어를 대체합니다.</li>
-              </ul>
               <pre><code class="html"><!--
 -->&lt;!-- container --&gt;
 &lt;div data-skeletabs-class="myprefix">...&lt;/div></code></pre>
-              <p>옵션, 클래스 커스터마이징에 관한 상세한 정보는 <a href="#Options">옵션</a> 항목을 읽어주세요.</p>
+              <ul>
+                <li>A JSON object will modify classes that match the object keys.</li>
+                <li>A string will replace <code>skltbs</code> prefix.</li>
+              </ul>
+              <p>More information about customzing options and class names can be found in <a href="#Options">options</a> section.</p>
             </section>
 
             <section id="Demo" class="section">
-              <h2>예시</h2>
+              <h2>Demo</h2>
               <div class="tip">
-                다음은 주요 옵션을 적용한 코드 레시피입니다. 이 밖에 더 많은 설정을 확인하려면
-                <a href="#Options">옵션</a> 항목을 확인해 주세요.
+                Here are some example code recipes for different use cases. For more details, please read
+                <a href="#Options">options</a> section.
               </div>
 
-              <h3>기본</h3>
-              <div class="skltbs-theme-light js-skeletabs">
+              <h3>Default</h3>
+              <div class="skltbs-theme-light" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -502,8 +503,8 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs();</code></pre>
 
-              <h3>시작 패널 변경</h3>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "startIndex": -1 }'>
+              <h3>Starting index</h3>
+              <div class="skltbs-theme-light" data-skeletabs='{ "startIndex": -1 }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -572,13 +573,13 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ startIndex: -1 });</code></pre>
 
-              <h3>패널 비활성화</h3>
+              <h3>Disabled panels</h3>
               <div class="tip">
-                <code>startIndex</code> 값이 <code>disabledIndex</code>에 해당할 경우, 선택 가능한 다음 인덱스에서
-                시작하게 됩니다. 아래 예시도 기본값인 0번 인덱스가 비활성화되어 있어, 시작 인덱스가 1번으로
-                변경되었습니다.
+                <code>startIndex</code> value will be shifted to the next available index if it is in the
+                <code>disabledIndex</code> list. Example below demonstrates starting index being changed from 0 to 1 as
+                the index 0 is disabled.
               </div>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "disabledIndex": [0, 2] }'>
+              <div class="skltbs-theme-light" data-skeletabs='{ "disabledIndex": [0, 2] }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -647,8 +648,8 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ disabledIndex: [0, 3] });</code></pre>
 
-              <h3>마우스오버에 반응</h3>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "selectEvent": "hover" }'>
+              <h3>React to mouseover</h3>
+              <div class="skltbs-theme-light" data-skeletabs='{ "selectEvent": "hover" }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -717,8 +718,8 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ selectEvent: "hover" });</code></pre>
 
-              <h3>패널 높이 균일화</h3>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "panelHeight": "equal" }'>
+              <h3>Equalize panel heights</h3>
+              <div class="skltbs-theme-light" data-skeletabs='{ "panelHeight": "equal" }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -787,8 +788,8 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ panelHeight: 'adapt' });</code></pre>
 
-              <h3>동적으로 갱신되는 패널 높이</h3>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "panelHeight": "adaptive" }'>
+              <h3>Adaptive panel heights</h3>
+              <div class="skltbs-theme-light" data-skeletabs='{ "panelHeight": "adaptive" }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -857,8 +858,8 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ panelHeight: 'adaptive' });</code></pre>
 
-              <h3>아코디언 비활성화</h3>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "breakpoint": 0 }'>
+              <h3>No accordion mode</h3>
+              <div class="skltbs-theme-light" data-skeletabs='{ "breakpoint": 0 }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -927,15 +928,15 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ breakpoint: 0 });</code></pre>
 
-              <h3>아코디언 세부설정</h3>
+              <h3>Accordion configuration</h3>
               <ul>
                 <li>1200px 이하에서 아코디언으로 변경</li>
                 <li>아코디언 헤딩에 &lt;header /> 엘리먼트 사용</li>
                 <li>아코디언에 슬라이드 효과 사용</li>
               </ul>
               <div
-                class="skltbs-theme-light js-skeletabs"
-                data-options='{ "breakpoint": 1200, "slidingAccordion": true }'
+                class="skltbs-theme-light"
+                data-skeletabs='{ "breakpoint": 1200, "slidingAccordion": true }'
               >
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
@@ -1005,10 +1006,10 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ breakpoint: 1200, slidingAccordion: true });</code></pre>
 
-              <h3>자동재생</h3>
+              <h3>Autoplay</h3>
               <div
-                class="skltbs-theme-light js-skeletabs"
-                data-options='{ "autoplay": true, "autoplayInterval": 5000 }'
+                class="skltbs-theme-light"
+                data-skeletabs='{ "autoplay": true, "autoplayInterval": 5000 }'
               >
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
@@ -1081,12 +1082,12 @@
   autoplayInterval: 5000
 });</code></pre>
 
-              <h3>수동형 키보드 내비게이션</h3>
+              <h3>Manual type keyboard navigation</h3>
               <p>
-                방향키를 눌렀을 때 포커스만 이동시키고, <kbd>Enter</kbd> 또는 <kbd>Space</kbd>를 눌렀을 때 해당 탭을
-                활성화시킵니다.
+                Move focus with arrow key inputs, and activates the key after <kbd>Enter</kbd> or <kbd>Space</kbd> being
+                pressed.
               </p>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "keyboard": "focus" }'>
+              <div class="skltbs-theme-light" data-skeletabs='{ "keyboard": "focus" }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -1157,19 +1158,19 @@
     keyboard: 'focus'
   });</code></pre>
 
-              <h3>레이아웃 업데이트 감도 조절</h3>
+              <h3>Sensitivity control for layout update</h3>
               <p>
-                <code>resizeTimeout</code>를 사용 하면 창의 너비가 바뀔 때 레이아웃이 변경되는 반응속도를 조절할 수
-                있습니다. 탭스와 아코디언 전환, 그리고 <code>panelHeight</code> 설정에 영향을 줍니다. (창 크기를
-                조절하면서 확인해 보세요.)
+                <code>resizeTimeout</code> option is used to control the limit of layout updates while resizing
+                viewport. If affects the toggle between the tabs and accordion layout, as well as
+                <code>panelHeight</code> settings. (Resize your window to see this in action.)
               </p>
               <p>
-                숫자를 낮게 잡을 수록 업데이트가 빨라지며, 숫자를 높게 잡을 수록 Reflow가 발생하는 빈도가 줄어들어
-                쾌적해집니다.
+                The lower the value, the faster the update is, and the higher the value, the less often reflow will
+                occur, resulting in better performance.
               </p>
               <div
-                class="skltbs-theme-light js-skeletabs"
-                data-options='{ "resizeTimeout": 500, "panelHeight": "equal" }'
+                class="skltbs-theme-light"
+                data-skeletabs='{ "resizeTimeout": 500, "panelHeight": "equal" }'
               >
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
@@ -1239,15 +1240,15 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ resizeTimeout: 500, panelHeight: 'equal' });</code></pre>
 
-              <h3>URL 해시 변경</h3>
+              <h3>URL hash change</h3>
               <p>
-                <code>history</code> 설정은 패널 사이를 이동할 때 주소 창에 해시를 변경할 것인지를 결정합니다. 기본값은
-                <code class="hljs-string">'replace'</code>이며 해시를 변경해 주고,
-                <code class="hljs-string">'push'</code>로 설정하면 해시를 변경한 후 뒤로가기 기능을 사용할 수 있게 해
-                줍니다.
+                <code>history</code> option determines whether you want to change the hash in the address as you move
+                between panels. Default value is <code class="hljs-string">'replace'</code> and it updates the URL, and
+                setting it to <code class="hljs-string">'push'</code> will add ability to navigate back and forth on top
+                of that.
               </p>
-              <p>해시 변경을 원하지 않는다면 <code>false</code>를 사용하면 됩니다.</p>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "history": "push" }'>
+              <p>If this options is set to <code>false</code>, it ensures there will be no hash update.</p>
+              <div class="skltbs-theme-light" data-skeletabs='{ "history": "push" }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -1318,12 +1319,13 @@
             </section>
 
             <section id="Options" class="section">
-              <h2>옵션</h2>
-              <p>Skeletabs는 옵션, 클래스 2개의 매개변수를 허용합니다.</p>
+              <h2>Option configurations</h2>
+              <p>Skeletabs takes 2 optional parameters: opions &amp; classNames.</p>
               <pre><code class="javascript"><!--
 -->$(selector).skeletabs(options, classNames);</code></pre>
-              <h3>사용자 옵션</h3>
-              <p>다음은 사용자 옵션 기본값입니다.</p>
+
+              <h3>Options</h3>
+              <p>Here's the summarized version of default options.</p>
               <pre><code class="javascript"><!--
 -->{
   autoplay: false,
@@ -1353,10 +1355,10 @@
                   </colgroup>
                   <thead>
                     <tr>
-                      <th scope="col">키</th>
-                      <th scope="col">타입</th>
-                      <th scope="col">기본값</th>
-                      <th scope="col">설명</th>
+                      <th scope="col">Key</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Default</th>
+                      <th scope="col">Description</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1364,25 +1366,25 @@
                       <td>autoplay</td>
                       <td><code>boolean</code></td>
                       <td><code class="hljs-literal">false</code></td>
-                      <td>일정 주기마다 다음 탭으로 넘어갈 것인지를 나타냅니다.</td>
+                      <td>Automatically move forward to next panel.</td>
                     </tr>
                     <tr>
                       <td>autoplayInterval</td>
                       <td><code>number</code></td>
                       <td><code class="hljs-number">3000</code></td>
-                      <td>autoplay를 실행할 주기를 나타냅니다. (밀리세컨드 단위)</td>
+                      <td>Time gap of autoplay cycle. (in milliseconds)</td>
                     </tr>
                     <tr>
                       <td>breakpoint</td>
-                      <td><code>number</code></td>
+                      <td><code>number</code><br /><code>false</code></td>
                       <td><code class="hljs-number">640</code></td>
                       <td>
-                        <p>뷰포트 너비가 이 지점 이하에서 아코디언으로 바뀜을 나타냅니다. (px 단위)</p>
+                        <p>Transform to accordion layout below this pixel. (in px, inclusive)</p>
                         <ul>
-                          <li><code class="hljs-number">0</code>을 입력하면 아코디언 모드를 사용하지 않습니다.</li>
+                          <li><code class="hljs-number">0</code> will disable accordion mode.</li>
                           <li>
-                            <code class="hljs-number">100000</code>처럼 비현실적으로 큰 단위를 입력하면 사실상 늘
-                            아코디언 모드가 됩니다.
+                            Unrealistically large numbers like <code class="hljs-number">100000</code> will virtually
+                            set it to constant accordion mode.
                           </li>
                         </ul>
                       </td>
@@ -1392,7 +1394,7 @@
                       <td><code>number</code><br /><code>array</code><br /></td>
                       <td><code class="hljs-literal">null</code></td>
                       <td>
-                        비활성화할 탭의 인덱스를 나타냅니다. 배열을 사용해 복수 이상의 대상을 비활성화 가능합니다.
+                        Index of tab(s) to disable. Can be an array type to describe multiple indice to disable.
                       </td>
                     </tr>
                     <tr>
@@ -1403,21 +1405,21 @@
                       </td>
                       <td><code class="hljs-string">'replace'</code></td>
                       <td>
-                        탭을 선택했을 때
+                        The behavior of
                         <a
                           href="https://developer.mozilla.org/ko/docs/Web/API/History_API"
                           rel="external noopener noreferrer"
                           >History API</a
-                        >를 사용해 URL의 해시를 변경하는 방법을 나타냅니다.
+                        >
+                        updating hash in URL.
                         <ul>
-                          <li><code class="hljs-string">'replace'</code> &mdash; URL 해시만 변경합니다.</li>
+                          <li><code class="hljs-string">'replace'</code> &mdash; Update the hash.</li>
                           <li>
-                            <code class="hljs-string">'push'</code> &mdash; URL 해시를 변경하고, 뒤로가기를 눌렀을 때
-                            이전 탭으로 이동합니다.
-                            <a href="https://caniuse.com/#feat=history">History API를 지원하는 브라우저</a>에서만
-                            작동합니다.
+                            <code class="hljs-string">'push'</code> &mdash; Update the hash, and allows you to go back
+                            and forth using browser buttons. It will work in
+                            <a href="https://caniuse.com/#feat=history">browsers with History API enabled</a>.
                           </li>
-                          <li><code class="hljs-literal">false</code> &mdash; 해시를 업데이트하지 않습니다.</li>
+                          <li><code class="hljs-literal">false</code> &mdash; Do not update the hash.</li>
                         </ul>
                       </td>
                     </tr>
@@ -1429,23 +1431,23 @@
                       </td>
                       <td><code class="hljs-string">'select'</code></td>
                       <td>
-                        <p>키보드를 사용해 탭 사이를 이동할지 여부를 나타냅니다.</p>
+                        <p>Navigate back and forth with a specific set of keys.</p>
                         <ul>
-                          <li><kbd>&uarr;</kbd> &mdash; 세로 레이아웃에서 이전 탭으로 이동합니다.</li>
-                          <li><kbd>&darr;</kbd> &mdash; 세로 레이아웃에서 다음 탭으로 이동합니다.</li>
-                          <li><kbd>&larr;</kbd> &mdash; 가로 레이아웃에서 이전 탭으로 이동합니다.</li>
-                          <li><kbd>&rarr;</kbd> &mdash; 가로 레이아웃에서 다음 탭으로 이동합니다.</li>
-                          <li><kbd>Home</kbd> &mdash; 첫 탭으로 이동합니다.</li>
-                          <li><kbd>End</kbd> &mdash; 마지막 탭으로 이동합니다.</li>
+                          <li><kbd>&uarr;</kbd> &mdash; Move to previous tab in vertical layout.</li>
+                          <li><kbd>&darr;</kbd> &mdash; Move to next tab in vertical layout.</li>
+                          <li><kbd>&larr;</kbd> &mdash; Move to previous tab in horizontal layout.</li>
+                          <li><kbd>&rarr;</kbd> &mdash; Move to next tab in horizontal layout.</li>
+                          <li><kbd>Home</kbd> &mdash; Move to the first tab.</li>
+                          <li><kbd>End</kbd> &mdash; Move to the last tab.</li>
                         </ul>
-                        <p>다음 값을 사용 가능합니다.</p>
+                        <p>Next values are valid:</p>
                         <ul>
-                          <li><code class="hljs-string">'select'</code> &mdash; 대상 탭으로 이동합니다.</li>
+                          <li><code class="hljs-string">'select'</code> &mdash; Move to the focused tab.</li>
                           <li>
-                            <code class="hljs-string">'focus'</code> &mdash; 대상 탭에 포커스만 부여하고,
-                            <kbd>Enter</kbd> 또는 <kbd>Space</kbd> 키를 누르면 이동합니다.
+                            <code class="hljs-string">'focus'</code> &mdash; Move focus to the target tab, and move
+                            after either <kbd>Enter</kbd> or <kbd>Space</kbd> key is pressed.
                           </li>
-                          <li><code class="hljs-literal">false</code> &mdash; 키보드 입력에 반응하지 않습니다.</li>
+                          <li><code class="hljs-literal">false</code> &mdash; Do not respond to keyboard inputs.</li>
                         </ul>
                       </td>
                     </tr>
@@ -1455,7 +1457,7 @@
                         <code class="hljs-string">'horizontal'</code><br /><code class="hljs-string">'vertical'</code>
                       </td>
                       <td><code class="hljs-string">'horizontal'</code></td>
-                      <td>탭스 모드에서 어느 방향키에 반응할지를 나타냅니다.</td>
+                      <td>Determines which of the arrow keys should be used in tabs mode.</td>
                     </tr>
                     <tr class="option-object">
                       <td>keyboardAccordion</td>
@@ -1464,7 +1466,7 @@
                       </td>
                       <td><code class="hljs-string">'vertical'</code></td>
                       <td>
-                        아코디언 모드에서 어느 방향키에 반응할지를 나타냅니다.
+                        Determines which of the arrow keys should be used in accordion mode.
                       </td>
                     </tr>
                     <tr>
@@ -1477,15 +1479,16 @@
                       </td>
                       <td><code class="hljs-string">'auto'</code></td>
                       <td>
-                        <p>패널 그룹의 높이를 나타냅니다.</p>
+                        <p>Adjust height of panels.</p>
                         <ul>
-                          <li><code class="hljs-string">'auto'</code> &mdash; 높이를 조정하지 않습니다.</li>
+                          <li><code class="hljs-string">'auto'</code> &mdash; Do nothing.</li>
                           <li>
-                            <code class="hljs-string">'equal'</code> &mdash; 모든 패널의 높이를 가장 높은 것에 균일하게
-                            맞춥니다.
+                            <code class="hljs-string">'equal'</code> &mdash; Adjust the height of all panels evenly to
+                            the highest.
                           </li>
                           <li>
-                            <code class="hljs-string">'adaptive'</code> &mdash; 현재 패널의 높이에 정확하게 맞춥니다.
+                            <code class="hljs-string">'adaptive'</code> &mdash; Update height of panelGroup to fit
+                            currently active panel's.
                           </li>
                         </ul>
                       </td>
@@ -1494,15 +1497,14 @@
                       <td>pauseOnFocus</td>
                       <td><code>boolean</code></td>
                       <td><code class="hljs-literal">true</code></td>
-                      <td>포커스를 받았을 때 자동재생 상태를 일시정지합니다. 포커스를 잃으면 자동재생을 재개합니다.</td>
+                      <td>Pause autoplaying while having focus on any child element, and resume after losing focus.</td>
                     </tr>
                     <tr>
                       <td>pauseOnHover</td>
                       <td><code>boolean</code></td>
                       <td><code class="hljs-literal">false</code></td>
                       <td>
-                        마우스 포인터를 올렸을 때 자동재생 상태를 일시정지합니다. 마우스 포인터가 떠나면 자동재생을
-                        재개합니다.
+                        Pause autoplaying while having mouse pointer over, and resume after the mouse pointer leaves.
                       </td>
                     </tr>
                     <tr>
@@ -1510,8 +1512,9 @@
                       <td><code>number</code></td>
                       <td><code class="hljs-number">100</code></td>
                       <td>
-                        뷰포트 너비가 바뀔 때, 레이아웃을 업데이트하는 반응속도를 나타냅니다. (밀리세컨드 단위) 아코디언
-                        모드와 <code>panelHeight</code> 옵션에 영향을 줍니다.
+                        Time delay before performing any layout update, while viewport is being resized. (in
+                        milliseconds) Affects the toggle between the tabs and accordion layout, as well as
+                        <code>panelHeight</code> settings.
                       </td>
                     </tr>
                     <tr>
@@ -1519,8 +1522,8 @@
                       <td><code class="hljs-string">'click'</code><br /><code class="hljs-string">'hover'</code></td>
                       <td><code class="hljs-string">'click'</code></td>
                       <td>
-                        탭을 선택하는 이벤트의 종류를 나타냅니다. 마우스오버에 반응하게 하려면
-                        <code class="hljs-string">'hover'</code>를 사용합니다.
+                        Type of event to listen for. Setting it to
+                        <code class="hljs-string">'hover'</code> will respond to mouse hover events.
                       </td>
                     </tr>
                     <tr>
@@ -1528,7 +1531,7 @@
                       <td><code>boolean</code></td>
                       <td><code class="hljs-literal">false</code></td>
                       <td>
-                        아코디언 패널을 펼치거나 접을 때 슬라이드 애니메이션을 사용할지 여부를 나타냅니다.
+                        Use sliding effect in accordion layout.
                       </td>
                     </tr>
                     <tr>
@@ -1536,10 +1539,11 @@
                       <td><code>number</code></td>
                       <td><code class="hljs-number">0</code></td>
                       <td>
-                        시작시 활성화될 패널의 인덱스를 나타냅니다. 음수로 뒤에서부터 선택 가능합니다. (<code
+                        Index of the initially active panel. Negative index can be used to select from the end. (<code
                           class="hljs-number"
                           >-1</code
-                        >은 마지막 패널)
+                        >
+                        is the last panel)
                       </td>
                     </tr>
                     <tr>
@@ -1547,14 +1551,14 @@
                       <td><code>number</code></td>
                       <td><code class="hljs-number">500</code></td>
                       <td>
-                        CSS transition의 지속시간을 나타냅니다. (밀리세컨드 단위) enterActive, leaveActive 클래스가
-                        지속되는 시간 및 accordion의 slideEffect 속도에 영향을 줍니다.
+                        Duration of CSS transition. (in milliseconds) Determines how long enterActive, leaveActive
+                        classNames should last and also affects the duration of sliding animation in accordion mode.
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <h3>CSS class 설정</h3>
+              <h3>classNames</h3>
               <div class="table-scroller">
                 <table>
                   <colgroup>
@@ -1564,109 +1568,110 @@
                   </colgroup>
                   <thead>
                     <tr>
-                      <th scope="col">키</th>
-                      <th scope="col">기본값</th>
-                      <th scope="col">설명</th>
+                      <th scope="col">Key</th>
+                      <th scope="col">Default</th>
+                      <th scope="col">Description</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>tabGroup</td>
                       <td><code class="hljs-string">'skltbs-tab-group'</code></td>
-                      <td>탭을 묶는 <code>ul</code> 엘리먼트</td>
+                      <td><code>ul</code> element wrapping all tabItems.</td>
                     </tr>
                     <tr>
                       <td>tabItem</td>
                       <td><code class="hljs-string">'skltbs-tab-item'</code></td>
-                      <td>tabGroup의 자녀 <code>li</code> 엘리먼트</td>
+                      <td>Child <code>li</code> elements of the tabGroup.</td>
                     </tr>
                     <tr>
                       <td>tab</td>
                       <td><code class="hljs-string">'skltbs-tab'</code></td>
-                      <td>tabItem의 자녀 <code>button</code> 엘리먼트</td>
+                      <td>Child <code>button</code> elements of each tabItem.</td>
                     </tr>
                     <tr>
                       <td>panelGroup</td>
                       <td><code class="hljs-string">'skltbs-panel-group'</code></td>
-                      <td>패널을 묶는 엘리먼트 (패널의 직속 부모일 필요는 없습니다.)</td>
+                      <td>Element wrapping panels. (Doesn't have to be the direct parent element of the panels.)</td>
                     </tr>
                     <tr>
                       <td>panel</td>
                       <td><code class="hljs-string">'skltbs-panel'</code></td>
-                      <td>panelGroup에 속한 패널 엘리먼트</td>
+                      <td>panel elements in the panelGroup element tree.</td>
                     </tr>
                     <tr>
                       <td>panelHeading</td>
                       <td><code class="hljs-string">'skltbs-panel-heading'</code></td>
-                      <td>아코디언 모드에서 탭을 감싸도록 동적 생성되는 엘리먼트</td>
+                      <td>Dynamically created element in accordion mode that wraps the tabs.</td>
                     </tr>
                     <tr>
                       <td>init</td>
                       <td><code class="hljs-string">'skltbs-init'</code></td>
-                      <td>Skeletabs가 활성화되었을 때 컨테이너에 추가되는 클래스</td>
+                      <td>Class added to container when a Skeletabs instance is done initializing.</td>
                     </tr>
                     <tr>
                       <td>tabsMode</td>
                       <td><code class="hljs-string">'skltbs-mode-tabs'</code></td>
-                      <td>탭스 모드일 때 컨테이너에 추가되는 클래스</td>
+                      <td>Class added to container in tabs mode.</td>
                     </tr>
                     <tr>
                       <td>accordionMode</td>
                       <td><code class="hljs-string">'skltbs-mode-accordion'</code></td>
-                      <td>아코디언 모드일 때 컨테이너에 추가되는 클래스</td>
+                      <td>Class added to container in accordion mode.</td>
                     </tr>
                     <tr>
                       <td>active</td>
                       <td><code class="hljs-string">'skltbs-active'</code></td>
-                      <td>현재 가리키는 tabItem, tab, panel에 추가되는 클래스</td>
+                      <td>Class added to the active tabItem, tab and panel.</td>
                     </tr>
                     <tr>
                       <td>disabled</td>
                       <td><code class="hljs-string">'skltbs-disabled'</code></td>
-                      <td>비활성 tabItem, tab, panel에 추가되는 클래스</td>
+                      <td>Class added to disabled tabItem(s), tab(s) and panel(s).</td>
                     </tr>
                     <tr>
                       <td>enter</td>
                       <td><code class="hljs-string">'skltbs-enter'</code></td>
-                      <td>보여지는 패널에 추가되는 클래스. 이 클래스에 CSS transition의 시작 상태를 정의합니다.</td>
+                      <td>Class added to the panel getting in. Declare your CSS transition's starting state.</td>
                     </tr>
                     <tr>
                       <td>enterActive</td>
                       <td><code class="hljs-string">'skltbs-enter-active'</code></td>
                       <td>
-                        보여지는 패널의 transition 주기 처음에 추가되는 클래스. 이 클래스에 CSS transition의 종료 상태를
-                        정의합니다.
+                        Class added to the panel getting in, on the next rendering frame. Declare your CSS transition's
+                        ending state.
                       </td>
                     </tr>
                     <tr>
                       <td>enterDone</td>
                       <td><code class="hljs-string">'skltbs-enter-done'</code></td>
-                      <td>보여지는 패널의 transition 주기 끝에 추가되는 클래스</td>
+                      <td>Class added to the panel completely got in.</td>
                     </tr>
                     <tr>
                       <td>leave</td>
                       <td><code class="hljs-string">'skltbs-leave'</code></td>
-                      <td>숨겨지는 패널에 추가되는 클래스. 이 클래스에 CSS transition의 시작 상태를 정의합니다.</td>
+                      <td>Class added to the panel getting out. Declare your CSS transition's starting state.</td>
                     </tr>
                     <tr>
                       <td>leaveActive</td>
                       <td><code class="hljs-string">'skltbs-leave-active'</code></td>
-                      <td>숨겨지는 패널에 추가되는 클래스. 이 클래스에 CSS transition의 종료 상태를 정의합니다.</td>
+                      <td>
+                        Class added to the panel getting out, on the next rendering frame. Declare your CSS transition's
+                        ending state.
+                      </td>
                     </tr>
                     <tr>
                       <td>leaveDone</td>
                       <td><code class="hljs-string">'skltbs-leave-done'</code></td>
-                      <td>
-                        숨겨지는 패널의 transition 주기 처음에 추가되는 클래스.
-                      </td>
+                      <td>Class added to the panel completely got out.</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
-              <h3>기본값 설정하기</h3>
+              <h3>Configuring global defaults</h3>
               <p>
-                모든 인스턴스에 공통 적용되는 옵션을 다음과 같이 설정할 수 있습니다.
+                You can change the default options that apply to all Skeletabs instances like next:
               </p>
               <pre><code class="javascript"><!--
 -->$.skeletabs.setDefaults({
@@ -1674,9 +1679,9 @@
   pauseOnHover: true
 });</code></pre>
               <p>
-                비슷한 방식으로 CSS class도 기본값을 설정할 수 있습니다. 문자열을 사용하면 모든
-                <code class="hljs-string">'skltbs'</code> 접두를 다른 접두어로 일괄적으로 바꿀 수 있고, 객체를 사용하면
-                각 class를 세부 설정할 수 있습니다.
+                Similarly, default CSS classes can be globally configured. Pass a string input to change the
+                <code class="hljs-string">'skltbs'</code> prefix to your own settings, and an object to configure each
+                className one by one.
               </p>
               <pre><code class="javascript"><!--
 -->$.skeletabs.setClassNames('my');</code></pre>
@@ -1690,68 +1695,70 @@
   panelHeading: 'panel-heading'
 });</code></pre>
               <p>
-                기본값 설정은 <code>.skeletabs();</code>로 인스턴스를 생성하기 전에 이루어져야 합니다. 도중에 선언될
-                경우, 그 이후에 생성된 인스턴스에만 변경된 설정이 적용됩니다.
+                Global settings should be declared before calling <code>.skeletabs();</code>. If declared in between
+                instantiations, your globals will only affect instances created afterwards.
               </p>
             </section>
 
             <section id="Methods" class="section">
-              <h2>메소드</h2>
+              <h2>Methods</h2>
               <p>
-                Skeletabs를 활성화한 엘리먼트에 여러 유용한 메소드를 사용할 수 있습니다.
+                Skeletabs dispose some very useful methods.
               </p>
               <pre><code class="javascript">$(selector).skeletabs('method', [, arguments...]);</code></pre>
-              <p>메소드를 사용하려면 그 전에 Skeletabs를 한 번 활성화해야 합니다. 다음은 예시입니다.</p>
+              <p>You should initialize the plugin once to be able to use them. Please see next example:</p>
               <pre><code class="javascript"><!--
--->// skeletabs를 자동재생 옵션과 함께 활성화
+-->// Enable Skeletabs with autoplay feature
 $('#container').skeletabs({ autoplay: true });
-// stop 버튼을 누르면 자동재생을 중지
+// Pause autoplaying on clicking stop button
 $('#stopButton').click(function() {
   $('#container').skeletabs('pause');
 });</code></pre>
 
               <h3>destroy</h3>
               <p>
-                Skeletabs에 의해 변경된 부분을 이전 상태로 되돌리고, 이벤트 리스너를 제거하고, 인스턴스의 참조를
-                삭제합니다.
+                Reset all modifications made by Skeletabs, unbind event listeners and remove references to the instance
+                itself.
               </p>
               <pre><code class="javascript">$('#container').skeletabs('destroy');</code></pre>
 
               <h3>reload</h3>
-                구성하는 엘리먼트들의 사이즈를 다시 계산하고, 필요에 따라 레이아웃 또는 패널의 크기를 재조정합니다. 복잡한 구조의 페이지에서 업데이트를 수동으로 제어하고자 할 때 유용합니다.
+                Recalculate the size of elements, and update the layout or size of panels if required. This method is useful when you want to control updates manually on pages in complex structure.
               </p>
 
               <h3>goTo</h3>
               <ul>
                 <li>
-                  <code class="hljs-comment">@param</code> index <code>number</code> &mdash; 이동할 대상 패널의 인덱스
+                  <code class="hljs-comment">@param</code> query <code>number | string</code> &mdash; index or hash of the destination panel
                 </li>
               </ul>
               <pre><code class="javascript"><!--
--->// 3번째 패널로 이동
+-->// Go to 3rd panel
 $('#container').skeletabs('goTo', 2);
-// URL 해시에 맞는 패널이 있을 경우, 해당 패널로 이동
+// Go to the panel that matches URL hash (if exists)
 $('#container').skeletabs('goTo', window.location.hash);</code></pre>
               <p>
-                주어진 인덱스를 가진 패널로 이동합니다. 만약 대상 인덱스가
-                <code>disabledIndex</code> 옵션에 의해 비활성화되어 있다면, 아무 반응도 하지 않습니다.
+                Move to the panel matching passed query. Do nothing if that index is disabled by <code>disabledIndex</code> option.
               </p>
               <ul>
-                <li><code>number</code>: 대상 패널의 인덱스를 입력 가능합니다. 음수 인덱스를 이용하면 뒤에서부터 거꾸로 선택할 수 있습니다.
-                (<code class="hljs-number">-1</code>은 마지막 인덱스)</li>
-                <li><code>string</code>: 대상 패널의 id에 맞는 해시를 입력 가능합니다. 이 방법은 탭스를 해시 갱신과 동기화하고자 할 때 유용합니다.</li>
+                <li><code>number</code>: Target panel's index can be used. Using negative index will select from the end. (<code
+                  class="hljs-number"
+                  >-1</code
+                >
+                is the last index)</li>
+                <li><code>string</code>: You can also pass a hash matching the panel's id. This is useful when you want to sync your tabs with hash changes.</li>
               </ul>
 
               <h3>next</h3>
               <p>
-                다음 패널로 이동합니다. 다음 인덱스가 비활성화되어 있다면, 가장 가까운 다음 활성 패널로 이동합니다. 다음
-                활성 패널이 없다면, 아무 반응도 하지 않습니다.
+                Move to the next panel. If the very next index is disabled, move to the closest available index instead.
+                Do nothing if no available panel is found in that direction.
               </p>
 
               <h3>prev</h3>
               <p>
-                이전 패널로 이동합니다. 이전 인덱스가 비활성화되어 있다면, 가장 가까운 이전 활성 패널로 이동합니다. 이전
-                활성 패널이 없다면, 아무 반응도 하지 않습니다.
+                Move to the previous panel. If the very previous index is disabled, move to the closest available index
+                instead. Do nothing if no available panel is found in that direction.
               </p>
 
               <h3>add</h3>
@@ -1759,188 +1766,208 @@ $('#container').skeletabs('goTo', window.location.hash);</code></pre>
                 <li>
                   <code class="hljs-comment">@param</code> data <code>object</code>
                   <ul class="object-detail">
-                    <li>tab <code>string</code> &mdash; 탭 내용이 될 HTML 문자열</li>
-                    <li>panel <code>string</code> &mdash; 패널 내용이 될 HTML 문자열</li>
+                    <li>tab <code>string</code> &mdash; new tab's content HTML</li>
+                    <li>panel <code>string</code> &mdash; new panel's content HTML</li>
                   </ul>
                 </li>
               </ul>
-              <p>새로운 탭/패널을 추가합니다.</p>
+              <p>Add a new set of tab and panel.</p>
               <pre><code class="javascript"><!--
 -->$('#container').skeletabs('add', {
-  tab: '새 탭',
-  panel: '&lt;p>&lt;strong>새 탭&lt;/strong>을 추가했습니다.&lt;/p>'
+  tab: 'New tab',
+  panel: '&lt;p>Added a &lt;strong>new tab&lt;/strong>.&lt;/p>'
 });</code></pre>
 
               <h3>remove</h3>
               <ul>
-                <li><code class="hljs-comment">@param</code> index <code>number</code> &mdash; 제거할 대상 인덱스</li>
+                <li>
+                  <code class="hljs-comment">@param</code> index <code>number</code> &mdash; index of the tab/panel to
+                  remove
+                </li>
               </ul>
               <p>
-                주어진 인덱스를 가진 탭/패널을 제거합니다. 음수 인덱스를 이용해 뒤에서부터 거꾸로 선택할 수 있습니다.
+                Remove tab/panel of the passed index. Negative index can select from the end.
               </p>
               <pre><code class="javascript">$('#container').skeletabs('remove', -1);</code></pre>
 
               <h3>play</h3>
               <p>
-                일정 주기마다 자동으로 다음 패널로 이동합니다. (자동재생 주기는 <code>autoplayInterval</code> 옵션값을
-                사용해 지정 가능합니다.)
+                Automatically move forward to the next panel. (Time delay before next autoplay tick can be configured
+                using <code>autoplayInterval</code> option.)
               </p>
 
               <h3>pause</h3>
-              <p>자동으로 다음 패널로 이동하던 동작을 중지합니다.</p>
+              <p>Pause autoplaying to the next panel.</p>
 
               <h3>getCurrentInfo</h3>
               <ul>
                 <li>
                   <code class="hljs-comment">@returns</code> info <code>object</code>
                   <ul class="object-detail">
-                    <li>$container <code>jQuery.Element</code> &mdash; 컨테이너 엘리먼트</li>
-                    <li>$currentPanel <code>jQuery.Element</code> &mdash; 현재 활성화된 탭 엘리먼트</li>
-                    <li>$currentTab <code>jQuery.Element</code> &mdash; 현재 활성화된 패널 엘리먼트</li>
-                    <li>$panels <code>jQuery.Element</code> &mdash; 패널 엘리먼트 모음</li>
-                    <li>$tabs <code>jQuery.Element</code> &mdash; 탭 엘리먼트 모음</li>
-                    <li>currentIndex <code>number</code> &mdash; 현재 활성화된 인덱스</li>
+                    <li>$container <code>jQuery.Element</code> &mdash; container element</li>
+                    <li>$currentPanel <code>jQuery.Element</code> &mdash; currently active panel element</li>
+                    <li>$currentTab <code>jQuery.Element</code> &mdash; currently active tab element</li>
+                    <li>$panels <code>jQuery.Element</code> &mdash; panel elements</li>
+                    <li>$tabs <code>jQuery.Element</code> &mdash; tab elements</li>
+                    <li>currentIndex <code>number</code> &mdash; currently active index</li>
                     <li>
-                      currentLayout <code>string</code> &mdash; 현재 사용중인 레이아웃 (<code class="hljs-string"
+                      currentLayout <code>string</code> &mdash; currently used layout (<code class="hljs-string"
                         >'tabs'</code
                       >
-                      또는 <code class="hljs-string">'accordion'</code>)
+                      or <code class="hljs-string">'accordion'</code>)
                     </li>
-                    <li>size <code>number</code> &mdash; 패널의 갯수</li>
+                    <li>size <code>number</code> &mdash; length of panels</li>
                   </ul>
                 </li>
               </ul>
-              <p>Skeletabs 인스턴스의 주요 정보를 반환합니다.</p>
+              <p>Get main info from a Skeletabs instance.</p>
               <pre><code class="javascript"><!--
--->// Skeletabs를 활성화
+-->// Enable Skeletabs
 $('#container').skeletabs();
-// currentIndex 정보를 로그에 출력
+// Log current index
 var info = $('#container').skeletabs('getCurrentInfo');
 console.log(info.currentIndex); // 0</code></pre>
             </section>
 
             <section id="Events" class="section">
-              <h2>이벤트</h2>
+              <h2>Events</h2>
               <p>
-                Skeletabs가 발생시키는 jQuery 이벤트를 통해 커스텀 콜백을 등록할 수 있습니다. 모든 이벤트는
-                <code>skeletabs:</code>가 접두되어 있으며, 컨테이너 엘리먼트에서 발생합니다.
+                You can bind custom callbacks using jQuery events that the plugin dispatches. All events are prefixed by
+                <code>skeletabs:</code>, and triggered onto the container element.
               </p>
               <pre><code class="javascript"><!--
 -->$('#container')
   .on('skeletabs:init', function(event, info) {
-    // 초기화가 완료되면...
+    // After done initializing...
   })
   .on('skeletabs:layoutchange', function(event, info) {
-    // 레이아웃이 탭 &lt;-> 아코디언 사이에서 전환하면...
+    // When switching between tabs &lt;-> accordion...
   })
-  .skeletabs(); // 초기화</code></pre>
+  .skeletabs(); // init</code></pre>
 
-              <p>모든 콜백은 기본적으로 다음 매개변수를 전달합니다.</p>
+              <p>All callbacks receive next arguments by default.</p>
               <ul>
                 <li>
                   <code class="hljs-comment">@param</code> event <code>jQuery.Event</code> &mdash;
                   <a href="https://api.jquery.com/category/events/event-object/" rel="external noopener noreferrer"
-                    >jQuery 이벤트 객체</a
+                    >jQuery Event object</a
                   >
                 </li>
                 <li>
                   <code class="hljs-comment">@param</code> info <code>object</code>
                   <ul class="object-detail">
-                    <li>$container <code>jQuery.Element</code> &mdash; 컨테이너 엘리먼트</li>
-                    <li>$currentPanel <code>jQuery.Element</code> &mdash; 현재 활성화된 탭 엘리먼트</li>
-                    <li>$currentTab <code>jQuery.Element</code> &mdash; 현재 활성화된 패널 엘리먼트</li>
-                    <li>$panels <code>jQuery.Element</code> &mdash; 패널 엘리먼트 모음</li>
-                    <li>$tabs <code>jQuery.Element</code> &mdash; 탭 엘리먼트 모음</li>
-                    <li>currentIndex <code>number</code> &mdash; 현재 활성화된 인덱스</li>
+                    <li>$container <code>jQuery.Element</code> &mdash; container element</li>
+                    <li>$currentPanel <code>jQuery.Element</code> &mdash; currently active panel element</li>
+                    <li>$currentTab <code>jQuery.Element</code> &mdash; currently active tab element</li>
+                    <li>$panels <code>jQuery.Element</code> &mdash; panel elements</li>
+                    <li>$tabs <code>jQuery.Element</code> &mdash; tab elements</li>
+                    <li>currentIndex <code>number</code> &mdash; currently active index</li>
                     <li>
-                      currentLayout <code>string</code> &mdash; 현재 사용중인 레이아웃 (<code class="hljs-string"
+                      currentLayout <code>string</code> &mdash; currently used layout (<code class="hljs-string"
                         >'tabs'</code
                       >
-                      또는 <code class="hljs-string">'accordion'</code>)
+                      or <code class="hljs-string">'accordion'</code>)
                     </li>
-                    <li>size <code>number</code> &mdash; 패널의 갯수</li>
+                    <li>size <code>number</code> &mdash; length of panels</li>
                   </ul>
                 </li>
               </ul>
-              <div class="tip">추가 매개변수를 전달하는 이벤트는 따로 명시되어 있습니다.</div>
+              <div class="tip">Events that passes additional parameters are indicated so.</div>
 
               <h3>skeletabs:init</h3>
               <p>
-                초기화(init)를 마쳤을 때 발생하는 이벤트입니다. 이벤트가 발생하지 않는다면, 이벤트 핸들러를
-                <code>.skeletabs();</code> 호출 전에 추가했는지 점검해 보세요.
+                Event fired on initialization completeion. If this event is not triggered, make sure you added your
+                event listener before calling <code>.skeletabs();</code>.
               </p>
 
               <h3>skeletabs:move</h3>
               <ul>
                 <li>
-                  <code class="hljs-comment">@param</code> event <code>jQuery.Event</code> &mdash; jQuery 이벤트 객체
+                  <code class="hljs-comment">@param</code> event <code>jQuery.Event</code> &mdash; jQuery Event object
                 </li>
                 <li>
                   <code class="hljs-comment">@param</code> info <code>object</code>
                   <ul class="object-detail">
-                    <li>$container <code>jQuery.Element</code> &mdash; 컨테이너 엘리먼트</li>
-                    <li>$currentPanel <code>jQuery.Element</code> &mdash; 현재 활성화된 패널 엘리먼트</li>
-                    <li>$currentTab <code>jQuery.Element</code> &mdash; 현재 활성화된 탭 엘리먼트</li>
-                    <li>$nextTab <code>jQuery.Element</code> &mdash; 이동할 다음 패널 엘리먼트</li>
-                    <li>$nextPanel <code>jQuery.Element</code> &mdash; 이동할 다음 탭 엘리먼트</li>
-                    <li>currentIndex <code>number</code> &mdash; 현재 활성화된 인덱스</li>
-                    <li>nextIndex <code>number</code> &mdash; 이동할 다음 인덱스</li>
-                    <li>size <code>number</code> &mdash; 패널의 갯수</li>
+                    <li>$container <code>jQuery.Element</code> &mdash; container element</li>
+                    <li>$currentPanel <code>jQuery.Element</code> &mdash; currently active panel element</li>
+                    <li>$currentTab <code>jQuery.Element</code> &mdash; currently active tab element</li>
+                    <li>$nextPanel <code>jQuery.Element</code> &mdash; panel element we are moving onto</li>
+                    <li>$nextTab <code>jQuery.Element</code> &mdash; tab element we are moving onto</li>
+                    <li>$panels <code>jQuery.Element</code> &mdash; panel elements</li>
+                    <li>$tabs <code>jQuery.Element</code> &mdash; tab elements</li>
+                    <li>currentIndex <code>number</code> &mdash; currently active index</li>
+                    <li>nextIndex <code>number</code> &mdash; index of the tab we are moving onto</li>
+                    <li>
+                      currentLayout <code>string</code> &mdash; currently used layout (<code class="hljs-string"
+                        >'tabs'</code
+                      >
+                      or <code class="hljs-string">'accordion'</code>)
+                    </li>
+                    <li>size <code>number</code> &mdash; length of panels</li>
                   </ul>
                 </li>
               </ul>
               <p>
-                다른 탭으로 <b>이동하기 전에</b> 발생하는 이벤트입니다. <code>goTo()</code> 메소드를 호출했을 때 비활성
-                탭 등의 이유로 이동이 일어나지 않으면 이벤트도 발생하지 않습니다.
+                Event fired <b>before moving</b> to another tab. It does not trigger when <code>goTo()</code> method
+                does not actually move due to no available index found.
               </p>
 
               <h3>skeletabs:moved</h3>
               <ul>
                 <li>
-                  <code class="hljs-comment">@param</code> event <code>jQuery.Event</code> &mdash; jQuery 이벤트 객체
+                  <code class="hljs-comment">@param</code> event <code>jQuery.Event</code> &mdash; jQuery Event object
                 </li>
                 <li>
                   <code class="hljs-comment">@param</code> info <code>object</code>
                   <ul class="object-detail">
-                    <li>$container <code>jQuery.Element</code> &mdash; 컨테이너 엘리먼트</li>
-                    <li>$currentPanel <code>jQuery.Element</code> &mdash; 현재 활성화된 패널 엘리먼트</li>
-                    <li>$currentTab <code>jQuery.Element</code> &mdash; 현재 활성화된 탭 엘리먼트</li>
-                    <li>$previousTab <code>jQuery.Element</code> &mdash; 이동하기 전 패널 엘리먼트</li>
-                    <li>$previousPanel <code>jQuery.Element</code> &mdash; 이동하기 전 탭 엘리먼트</li>
-                    <li>currentIndex <code>number</code> &mdash; 현재 활성화된 인덱스</li>
-                    <li>previousIndex <code>number</code> &mdash; 이동하기 전 인덱스</li>
-                    <li>size <code>number</code> &mdash; 패널의 갯수</li>
+                    <li>$container <code>jQuery.Element</code> &mdash; container element</li>
+                    <li>$currentPanel <code>jQuery.Element</code> &mdash; currently active panel element</li>
+                    <li>$currentTab <code>jQuery.Element</code> &mdash; currently active tab element</li>
+                    <li>$previousPanel <code>jQuery.Element</code> &mdash; panel element we have moved from</li>
+                    <li>$previousTab <code>jQuery.Element</code> &mdash; tab element we have moved from</li>
+                    <li>$panels <code>jQuery.Element</code> &mdash; panel elements</li>
+                    <li>$tabs <code>jQuery.Element</code> &mdash; tab elements</li>
+                    <li>currentIndex <code>number</code> &mdash; currently active index</li>
+                    <li>previousIndex <code>number</code> &mdash; index of the tab we have moved from</li>
+                    <li>
+                      currentLayout <code>string</code> &mdash; currently used layout (<code class="hljs-string"
+                        >'tabs'</code
+                      >
+                      or <code class="hljs-string">'accordion'</code>)
+                    </li>
+                    <li>size <code>number</code> &mdash; length of panels</li>
                   </ul>
                 </li>
               </ul>
               <p>
-                다른 탭으로 <b>이동을 완료한 후에</b> 발생하는 이벤트입니다. <code>goTo()</code> 메소드 등을 실행했을 때
-                비활성 탭 등의 이유로 이동이 일어나지 않으면 이벤트도 발생하지 않습니다.
+                Event fired <b>after moving</b> to another tab. It does not trigger when <code>goTo()</code> method does
+                not actually move due to no available index found.
               </p>
 
               <h3>skeletabs:layoutchange</h3>
               <p>
-                탭스와 아코디언 모드 사이에서 레이아웃 변경이 일어날 때 발생하는 이벤트입니다.
-                <code>.skeletabs({ accordion: false });</code>처럼 아코디언을 사용하지 않은 경우 발생하지 않습니다.
+                Event fired when we are switching between tabs and accordion layout. Instances that do not use
+                alternative layout like <code>.skeletabs({ accordion: false });</code> does not trigger this event.
               </p>
             </section>
 
             <section id="Themes" class="section">
-              <h2>테마</h2>
+              <h2>Themes</h2>
               <p>
-                skeletabs.css 파일에는 2가지 기본 테마가 포함되어 있습니다. 컨테이너에 <code>skltbs-theme-</code>로
-                시작하는 class를 알맞게 추가하면 테마가 적용됩니다.
+                skeletabs.css file has 2 default themes included. Adding a className starting with
+                <code>skltbs-theme-</code> to the container element will apply relevant theme.
               </p>
               <pre><code class="html">&lt;div class="skltbs-theme-light">&lt;/div></code></pre>
 
               <div class="tip">
-                Skeletabs 패널 안에 다른 Skeletabs를 중첩해서 사용할 경우, CSS의 상속되는 성질에 의해 바깥쪽의 테마가
-                안쪽에게 영향을 미칩니다. 다르게 말하면, 중첩된 구조에서는 바깥쪽 컨테이너에만 class를 추가하면 됩니다.
+                When you have a nested Skeletabs container inside another, the theme declaration in CSS will cascade
+                down from the outmost container. In other words, in a nested structure, only the outer container needs
+                to have the CSS class.
               </div>
 
               <h3>skltbs-theme-light</h3>
               <div style="padding: 20px; background-color: #fff;">
-                <div class="skltbs-theme-light js-skeletabs">
+                <div class="skltbs-theme-light" data-skeletabs>
                   <ul class="skltbs-tab-group">
                     <li class="skltbs-tab-item">
                       <button class="skltbs-tab">Tab 1</button>
@@ -1995,7 +2022,7 @@ console.log(info.currentIndex); // 0</code></pre>
 
               <h3>skltbs-theme-dark</h3>
               <div style="padding: 20px; background-color: #1a1b1c;">
-                <div class="skltbs-theme-dark js-skeletabs">
+                <div class="skltbs-theme-dark" data-skeletabs>
                   <ul class="skltbs-tab-group">
                     <li class="skltbs-tab-item">
                       <button class="skltbs-tab">Tab 1</button>
@@ -2050,20 +2077,21 @@ console.log(info.currentIndex); // 0</code></pre>
             </section>
 
             <section id="Transition-effects" class="section">
-              <h2>애니메이션 효과</h2>
+              <h2>Transition effects</h2>
               <p>
-                skeletabs.css 파일에는 4가지 기본 애니메이션이 포함되어 있습니다. 컨테이너에 <code>use-</code>로
-                시작하는 class를 알맞게 추가하면 효과가 적용됩니다.
+                skeletabs.css file has 4 different types of default animation bundled in. Adding a className starting
+                <code>use-</code> to the container element will apply the relevant effect.
               </p>
               <pre><code class="html">&lt;div class="skltbs use-fade">&lt;/div></code></pre>
 
               <div class="tip">
-                Skeletabs 패널 안에 다른 Skeletabs를 중첩해서 사용할 경우, CSS의 상속되는 성질에 의해 바깥쪽의 테마가
-                안쪽에게 영향을 미칩니다. 다르게 말하면, 중첩된 구조에서는 바깥쪽 컨테이너에만 class를 추가하면 됩니다.
+                When you have a nested Skeletabs container inside another, the theme declaration in CSS will cascade
+                down from the outmost container. In other words, in a nested structure, only the outer container needs
+                to have the CSS class.
               </div>
 
               <h3>fade</h3>
-              <div class="skltbs-theme-light use-fade js-skeletabs">
+              <div class="skltbs-theme-light use-fade" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -2116,7 +2144,7 @@ console.log(info.currentIndex); // 0</code></pre>
               </div>
 
               <h3>fade-scale</h3>
-              <div class="skltbs-theme-light use-fade-scale js-skeletabs">
+              <div class="skltbs-theme-light use-fade-scale" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -2169,7 +2197,7 @@ console.log(info.currentIndex); // 0</code></pre>
               </div>
 
               <h3>drop</h3>
-              <div class="skltbs-theme-light use-drop js-skeletabs">
+              <div class="skltbs-theme-light use-drop" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -2222,7 +2250,7 @@ console.log(info.currentIndex); // 0</code></pre>
               </div>
 
               <h3>rotate</h3>
-              <div class="skltbs-theme-light use-rotate js-skeletabs">
+              <div class="skltbs-theme-light use-rotate" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -2274,8 +2302,11 @@ console.log(info.currentIndex); // 0</code></pre>
                 </div>
               </div>
 
-              <h3>나만의 애니메이션 효과 만들기</h3>
-              <p>다음은 fade 효과를 작성한 CSS입니다. 오리지널 효과를 만들 때 참조해 보세요.</p>
+              <h3>Make my own effect</h3>
+              <p>
+                Below is the CSS implemetation of built-in fade effect. It may come in handy when you create your own
+                effects.
+              </p>
               <pre><code class="css"><!--
 -->/* panel group */
 .skltbs-mode-tabs.use-fade .skltbs-panel-group {
@@ -2307,28 +2338,28 @@ console.log(info.currentIndex); // 0</code></pre>
   opacity: 1;
 }</code></pre>
               <p>
-                Transition의 기본 지속시간은 <code>500ms</code>입니다. 지속시간을 변경하려고 할 경우, CSS에 입력한 값을
-                <code>.skeletabs({ transtionDuration: 800 });</code>처럼 옵션으로도 전달해 주어야 합니다.
+                Default time duration of the transitions is <code>500ms</code>. Please remember passing the option
+                <code>.skeletabs({ transtionDuration: 800 });</code> when you change this value in CSS.
               </p>
             </section>
 
             <section id="FAQ" class="section">
-              <h2>자주 있는 질문</h2>
+              <h2>FAQ</h2>
               <p>
-                궁금해하던 부분에 대해 답이 되었나요? 다른 문제를 겪고 있다면,
+                Was this helpful to you? If you're experiencing a different issue, feel free to open a thread on
                 <a href="https://github.com/findawayer/Skeletabs/issues" rel="external noopener noreferrer"
-                  >GitHub 이슈</a
-                >를 이용해 보세요.
+                  >GitHub issues</a
+                >.
               </p>
               <div
-                class="faq-list js-skeletabs"
-                data-options='{ "breakpoint": 1e10, "history": false, "slidingAccordion": true, "transitionDuration": 300 }'
-                data-class-prefix="faq"
+                class="faq-list"
+                data-skeletabs='{ "breakpoint": 1e10, "history": false, "slidingAccordion": true, "transitionDuration": 300 }'
+                data-skeletabs-class="faq"
               >
                 <ul class="faq-tab-group">
                   <li class="faq-tab-item">
                     <button class="faq-tab">
-                      새 패널을 동적으로 추가할 수 있나요?
+                      Can I dynamically add new panels?
                       <svg class="mui-icon mui-icon-md" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
                       </svg>
@@ -2336,7 +2367,7 @@ console.log(info.currentIndex); // 0</code></pre>
                   </li>
                   <li class="faq-tab-item">
                     <button class="faq-tab">
-                      링크를 클릭했을 때 링크가 가리키는 패널로 이동할 수 있나요?
+                      How to get to the panel that the clicked anchor is pointing to?
                       <svg class="mui-icon mui-icon-md" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
                       </svg>
@@ -2344,7 +2375,7 @@ console.log(info.currentIndex); // 0</code></pre>
                   </li>
                   <li class="faq-tab-item">
                     <button class="faq-tab">
-                      이벤트가 두 번씩 발생합니다.
+                      My event is triggering twice.
                       <svg class="mui-icon mui-icon-md" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
                       </svg>
@@ -2354,21 +2385,21 @@ console.log(info.currentIndex); // 0</code></pre>
                 <div class="faq-panel-group">
                   <div class="faq-panel">
                     <p>
-                      Skeletabs는 <code>add</code>와 <code>remove</code> 메소드를 통해 새 패널을 추가하거나 기존 패널을
-                      삭제할 수 있도록 지원합니다.
+                      Skeletabs dispose <code>add</code> and <code>remove</code> methods to allow adding new panels or
+                      removing exinting ones.
                     </p>
                     <pre><code class="javascript"><!--
--->// 맨 끝에 새 패널을 추가
+-->// Append a new panel
 $('#container').skeletabs('add', {
-  tab: '새 탭',
-  panel: '&lt;p>&lt;strong>새 탭&lt;/strong>을 추가했습니다.&lt;/p>'
+  tab: 'New panel',
+  panel: '&lt;p>Added a &lt;strong>new panel&lt;/strong>.&lt;/p>'
 });</code></pre>
                     <pre><code class="javascript"><!--
--->// 마지막 패널을 제거
+-->// Remove the last panel
 $('#container').skeletabs('remove', -1);</code></pre>
                   </div>
                   <div class="faq-panel">
-                    <p><code>goTo</code> 메소드에 해시 문자열을 내보내면, 매칭하는 패널로 이동합니다. 다음은 이 사이트를 구성하고 있는 예제 스크립트입니다.</p>
+                    <p>You can move to matching panel by passing a hash string to <code>goTo</code> method. Below is an example implementation that this site is using.</p>
                     <pre><code class="javascript"><!--
 -->$(document).on('click', 'a[href^="#"]', function (event) {
   var hash = $(anchor).attr('href');
@@ -2383,17 +2414,18 @@ $('#container').skeletabs('remove', -1);</code></pre>
                   </div>
                   <div class="faq-panel">
                     <p>
-                      Skeletabs 안에 다른 Skeletabs를 생성하셨나요? 만약 그렇다면, 안쪽 인스턴스가 이벤트 버블링을
-                      일으켜 바깥쪽 인스턴스에도 이벤트를 전달하게 됩니다. 이와 같은 경우, 안쪽 인스턴스에
-                      <code>event.stopPropagation();</code>을 사용하면 버블링을 멈출 수 있습니다.
+                      Did you create a nested Skeletabs instance inside another? If so, inner instance will bubble up
+                      all events to the parent instance(s). In this case, I recommend calling
+                      <code>event.stopPropagation();</code> in the callback function from the inner instance to stop the
+                      bubbling.
                     </p>
                     <pre><code class="javascript"><!--
 -->$('#inner').on('skeletabs:moved', function(event) {
-  // 안쪽 Skeletabs가 움직일 때 이벤트 버블링을 막음
+  // Stop event bubbling from inner Skeletabs
   event.stopPropagation();
 });
 $('#outer').on('skeletabs:moved', function(event) {
-  // 바깥쪽 Skeletabs가 움직임을 완료했을 때...
+  // When outer Skeletabs finishes a movement...
 });</code></pre>
                   </div>
                 </div>

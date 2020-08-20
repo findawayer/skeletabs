@@ -1,0 +1,13 @@
+{
+  "short_name": "Skeletabs",
+  "name": "Skeletabs documentation",
+  "description": "Basic, accessible, responsive and freely restyleable tabs.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "homepage_url": "https://findawayer.github.io/Skeletabs/"
+}

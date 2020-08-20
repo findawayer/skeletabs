@@ -1,0 +1,13 @@
+// 1. Limit transition to tabs mode
+// 2. prepend `use-` to the effect name
+@mixin effect($name) {
+  .skltbs-mode-tabs.use-#{$name} {
+    @content;
+  }
+}
+
+// Override `style` attribute added by JS
+// we need the leaving panel to stay visible to apply effects.
+@mixin force-visible {
+  display: block !important;
+}

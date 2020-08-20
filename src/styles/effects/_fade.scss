@@ -1,0 +1,25 @@
+@include effect('fade') {
+  .skltbs-panel {
+    position: relative;
+    transition: opacity $duration;
+  }
+
+  .skltbs-leave {
+    position: absolute;
+    top: 0;
+    @include force-visible;
+    opacity: 1;
+
+    &-active {
+      opacity: 0;
+    }
+  }
+
+  .skltbs-enter {
+    opacity: 0;
+
+    &-active {
+      opacity: 1;
+    }
+  }
+}

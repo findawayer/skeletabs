@@ -1,50 +1,184 @@
- /*! Demo page script | Skeletabs
- ----------------------------------------------------------------------*/
+(function ($, history, location) {
+  // navigation
+  $('#page')
+    .on('skeletabs:init', function (_, skeletabs) {
+      if (skeletabs.$container.is('#page') && skeletabs.currentIndex === 0) {
+        $('#firstExampleInner').on('skeletabs:init', function () {
+          $(this).skeletabs('play');
+        });
+      }
+    })
+    .on('skeletabs:move', function (_, skeletabs) {
+      if (skeletabs.$container.is('#page') && skeletabs.currentIndex === 0) {
+        $('#firstExampleInner').skeletabs('pause');
+      }
+    })
+    .on('skeletabs:moved', function (_, skeletabs) {
+      if (skeletabs.$container.is('#page') && skeletabs.currentIndex === 0) {
+        $('#firstExampleInner').skeletabs('reload').skeletabs('play');
+      }
+    })
+    .skeletabs(
+      {
+        breakpoint: 0,
+        history: 'push',
+        keyboardTabs: 'vertical',
+        transitionDuration: 300
+      },
+      {
+        tabGroup: 'nav-group',
+        tabItem: 'nav-item',
+        tab: 'nav-link',
+        panelGroup: 'content',
+        panel: 'section',
+        init: 'page-init',
+        tabsMode: 'page-tabs',
+        accordionMode: 'page-accordion'
+      }
+    );
+  // Insure #firstExampleInner is initialized after #page
+  $('#firstExampleInner').skeletabs({ panelHeight: 'adaptive' });
 
-(function($) {
+  // internal links: move to the section
+  $(document).on('click', 'a[href^="#"]', function (event) {
+    var hash = $(this).attr('href');
+    pushState(hash);
+    $('#page').skeletabs('goTo', hash);
+    event.preventDefault();
+  });
 
-    // Default
-    $("#skltbsDefault").skeletabs();
+  // dropdown
+  (function () {
+    var expectedKeys = {
+      // Desktop keyboard
+      13: 'enter',
+      38: 'up',
+      40: 'down',
+      // Home/End
+      36: 'home',
+      35: 'end',
+      // WSAD keys
+      87: 'up',
+      83: 'down'
+    };
+    var cache = {};
 
-    // Default tab change
-    $("#skltbsDefaultTabChange").skeletabs({ defaultTab: 2 });
-
-    // Disable tab
-    $("#skltbsDisableTab").skeletabs({ disableTab: 4 });
-
-    // Equalize Heights
-    $("#skltbsEqualHeights").skeletabs({ equalHeights: true });
-
-    // Responsive settings
-    $("#skltbsResponsive").skeletabs({
-        responsive: {
-            breakpoint: 800,
-            headingTagName: "h4"
-        }
+    $(document).on('click', '.has-dropdown', function (event) {
+      event.preventDefault();
+      // console.log('click', this);
+      cache.$trigger = $(this);
+      cache.$dropdown = cache.$trigger.next('.dropdown');
+      cache.$options = cache.$dropdown.find('[role="option"]');
+      cache.selectedIndex = cache.$options.index(
+        cache.$options.filter('[aria-selected="true"]')
+      );
+      this.blur(); // prevent duplicate call on enter
+      if (cache.$trigger.attr('aria-expanded')) {
+        close();
+      } else {
+        open();
+      }
     });
-    $("#skltbsNonResponsive").skeletabs({ responsive: false });
 
-    // Switch on hover
-    $("#skltbsOnHover").skeletabs({ triggerEvent: "hover" });
+    function close() {
+      if (!cache.$trigger) {
+        return;
+      }
+      console.log('close');
+      cache.$trigger.removeAttr('aria-expanded');
+      cache.$dropdown
+        .removeClass('dropdown-expanded')
+        .off('click', '[role="option"]', handleOptionClick);
+      $(document).off('click', handleBlur).off('keydown', handleKeydown);
+      // flush
+      cache = {};
+    }
 
-    // Disable extra keyboard support
-    $("#skltbsDisableExKeyboard").skeletabs({ extendedKeyboard: false });
+    function open() {
+      if (!cache.$trigger) {
+        return;
+      }
+      console.log('open');
+      cache.$trigger.attr('aria-expanded', 'true');
+      cache.$dropdown
+        .addClass('dropdown-expanded')
+        .on('click', '[role="option"]', handleOptionClick);
+      $(document).on('click', handleBlur).on('keydown', handleKeydown);
+    }
 
-    // Prevent URL update
-    $("#skltbsDisableHashUpdate").skeletabs({ updateUrl: false });
+    function select(index) {
+      var $selectedOption;
+      if (!cache.$options) {
+        return;
+      }
+      if (index < 0 || cache.$options.length <= index) {
+        return;
+      }
+      $selectedOption = cache.$options.eq(index);
+      cache.$options.removeAttr('aria-selected');
+      cache.$dropdown.attr('aria-activedescendant', $selectedOption.attr('id'));
+      cache.$trigger.find('.button-text').text($selectedOption.text());
+      $selectedOption.attr('aria-selected', 'true');
+      cache.selectedIndex = index;
+    }
 
-    // Use animation
-    $("#skltbsAnimated").skeletabs({ animation: "fade-scale" });
+    function selectBy(step) {
+      if (!cache.$options) {
+        return;
+      }
+      select(cache.selectedIndex + step);
+    }
 
-    // Autoplay
-    $("#skltbsAutoplay").skeletabs({
-        autoplay: true,
-        autoplayInterval: 4500
-    });
+    function handleBlur(event) {
+      var exception;
+      if (!cache.$trigger) {
+        return;
+      }
+      exception = cache.$trigger.parent().get(0);
+      if (event.target === exception || exception.contains(event.target)) {
+        return;
+      }
+      close();
+    }
 
-    // Bind custom event
-    $("#skltbsCustomEvent").skeletabs({updateUrl: false}).on("tabswitch", function() {
-        alert("You are on: #" + $(this).skeletabs("getCurrentPanel").attr("id"));
-    });
+    function handleKeydown(event) {
+      var keycode = event.which || event.keyCode;
+      var key = expectedKeys[keycode];
+      if (!key) {
+        return;
+      }
+      switch (key) {
+        case 'up':
+          selectBy(-1);
+          break;
+        case 'down':
+          selectBy(1);
+          break;
+        case 'home':
+          select(0);
+          break;
+        case 'end':
+          select(cache.$options.length - 1);
+          break;
+        case 'enter':
+          cache.$options.eq(cache.selectedIndex).trigger('click');
+          break;
+        default:
+          break;
+      }
+    }
 
-})(jQuery);
+    function handleOptionClick() {
+      close();
+      // return true;
+    }
+  })();
+
+  function pushState(hash) {
+    if (history && history.pushState) {
+      history.pushState({ hash: hash }, null, hash);
+    } else {
+      location.hash = hash;
+    }
+  }
+})(window.jQuery, window.history, window.location);

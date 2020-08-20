@@ -1,0 +1,30 @@
+@include effect('fade-scale') {
+  .skltbs-panel {
+    position: relative;
+    transition: $duration;
+    transition-property: opacity, transform;
+  }
+
+  .skltbs-leave {
+    position: absolute;
+    top: 0;
+    @include force-visible;
+    opacity: 1;
+    transform: scale(1);
+
+    &-active {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  .skltbs-enter {
+    opacity: 0;
+    transform: scale(0.95);
+
+    &-active {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
