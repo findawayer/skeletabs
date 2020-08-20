@@ -17,8 +17,7 @@
     <link rel="manifest" href="./assets/manifest.json" />
     <title>Skeletabs</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" />
-    <link rel="stylesheet" href="../dist/skeletabs.css" />
-    <!-- <link rel="stylesheet" href="./assets/highlight/styles/github-gist.css" /> -->
+    <link rel="stylesheet" href="./assets/skeletabs/skeletabs.css" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script src="./assets/highlight/highlight.pack.js"></script>
     <script>
@@ -136,7 +135,7 @@
                 창의적인 응용을 장려하도록 만들어지고 있습니다.
               </p>
 
-              <div class="skltbs-theme-light js-skeletabs">
+              <div class="skltbs-theme-light" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -153,7 +152,7 @@
                 </ul>
                 <div class="skltbs-panel-group">
                   <div class="skltbs-panel">
-                    <div class="skltbs-theme-light js-skeletabs" data-options='{ "disabledIndex": -1 }'>
+                    <div class="skltbs-theme-light" data-skeletabs='{ "disabledIndex": -1 }'>
                       <ul class="skltbs-tab-group">
                         <li class="skltbs-tab-item">
                           <button class="skltbs-tab">Tab 1-1</button>
@@ -169,8 +168,7 @@
                         <div class="skltbs-panel">
                           <div
                             id="firstExampleInner"
-                            class="skltbs-theme-light js-skeletabs"
-                            data-options='{ "autoplay": true, "panelHeight": "adaptive" }'
+                            class="skltbs-theme-light"
                           >
                             <ul class="skltbs-tab-group">
                               <li class="skltbs-tab-item">
@@ -2408,7 +2406,7 @@ $('#outer').on('skeletabs:moved', function(event) {
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
-    <script src="../dist/skeletabs.js"></script>
+    <script src="./assets/skeletabs/skeletabs.js"></script>
     <script src="./assets/script.js"></script>
   </body>
 </html>

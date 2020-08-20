@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "set NODE_ENV=development&& webpack-dev-server",
+    "docs": "webpack --output-path docs/assets/skeletabs",
     "eslint": "eslint --fix --ext .js"
   },
   "files": [
