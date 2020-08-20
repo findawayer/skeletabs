@@ -9,23 +9,27 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const pkg = require('./package.json');
 /* eslint-disable global-require */
 
+// Environment detector
+const isDevMode = () => process.env.NODE_ENV === 'development';
+
 // Pre-defined string-replace-loader template
 // 1. convert {{version}} to `version` value in package.json
+// 2. strip `// @dev-only ` part from comments
 const stringReplaceLoader = {
   loader: 'string-replace-loader',
   options: {
-    search: /{{version}}/g,
-    replace: pkg.version,
+    multiple: [
+      {
+        search: /{{version}}/g,
+        replace: pkg.version,
+      },
+      {
+        search: /\/\/ @dev-only /g,
+        replace: '',
+      },
+    ],
   },
 };
-
-// Inject processed stylesheets in a dynamic way.
-// - development: inject css into DOM as <style /> node
-// - production: extract as separate CSS file for distribution
-const styleInjector =
-  process.env.NODE_ENV === 'development'
-    ? 'style-loader'
-    : MiniCssExtractPlugin.loader;
 
 // Webpack configurations
 let config = {
@@ -45,12 +49,16 @@ let config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader', stringReplaceLoader],
+        use: isDevMode()
+          ? 'babel-loader'
+          : ['babel-loader', stringReplaceLoader],
       },
       {
         test: /\.scss$/,
         use: [
-          styleInjector,
+          // - development: inject css into DOM as <style /> node
+          // - production: extract as separate CSS file for distribution
+          isDevMode() ? 'style-loader' : MiniCssExtractPlugin.loader,
           stringReplaceLoader,
           // interprete CSS to commonJS
           'css-loader',
@@ -80,7 +88,7 @@ let config = {
   },
 };
 
-if (process.env.NODE_ENV === 'development') {
+if (isDevMode()) {
   config = Object.assign(config, {
     mode: 'development',
     output: {

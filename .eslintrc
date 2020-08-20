@@ -24,5 +24,24 @@
       { "allowShortCircuit": true, "allowTernary": true }
     ],
     "import/prefer-default-export": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["docs/**/*.js", "test/**/*.js"],
+      "env": {
+        "es6": false
+      },
+      "parserOptions": {
+        "ecmaVersion": 5,
+        "sourceType": "script"
+      },
+      "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+      "rules": {
+        "no-undef": "off",
+        "no-use-before-define": "off",
+        "no-var": "off",
+        "object-shorthand": "off"
+      }
+    }
+  ]
 }

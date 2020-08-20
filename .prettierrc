@@ -5,5 +5,19 @@
   "singleQuote": true,
   "endOfLine": "auto",
   "trailingComma": "es5",
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "printWidth": 120
+      }
+    },
+    {
+      "files": ["docs/**/*.js", "test/**/*.js"],
+      "options": {
+        "trailingComma": "none"
+      }
+    }
+  ]
 }
