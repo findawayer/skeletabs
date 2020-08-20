@@ -431,7 +431,7 @@
               </div>
 
               <h3>기본</h3>
-              <div class="skltbs-theme-light js-skeletabs">
+              <div class="skltbs-theme-light" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -501,7 +501,7 @@
   -->$('#container').skeletabs();</code></pre>
 
               <h3>시작 패널 변경</h3>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "startIndex": -1 }'>
+              <div class="skltbs-theme-light" data-skeletabs='{ "startIndex": -1 }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -576,7 +576,7 @@
                 시작하게 됩니다. 아래 예시도 기본값인 0번 인덱스가 비활성화되어 있어, 시작 인덱스가 1번으로
                 변경되었습니다.
               </div>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "disabledIndex": [0, 2] }'>
+              <div class="skltbs-theme-light" data-skeletabs='{ "disabledIndex": [0, 2] }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -646,7 +646,7 @@
   -->$('#container').skeletabs({ disabledIndex: [0, 3] });</code></pre>
 
               <h3>마우스오버에 반응</h3>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "selectEvent": "hover" }'>
+              <div class="skltbs-theme-light" data-skeletabs='{ "selectEvent": "hover" }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -716,7 +716,7 @@
   -->$('#container').skeletabs({ selectEvent: "hover" });</code></pre>
 
               <h3>패널 높이 균일화</h3>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "panelHeight": "equal" }'>
+              <div class="skltbs-theme-light" data-skeletabs='{ "panelHeight": "equal" }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -786,7 +786,7 @@
   -->$('#container').skeletabs({ panelHeight: 'adapt' });</code></pre>
 
               <h3>동적으로 갱신되는 패널 높이</h3>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "panelHeight": "adaptive" }'>
+              <div class="skltbs-theme-light" data-skeletabs='{ "panelHeight": "adaptive" }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -856,7 +856,7 @@
   -->$('#container').skeletabs({ panelHeight: 'adaptive' });</code></pre>
 
               <h3>아코디언 비활성화</h3>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "breakpoint": 0 }'>
+              <div class="skltbs-theme-light" data-skeletabs='{ "breakpoint": 0 }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -932,8 +932,8 @@
                 <li>아코디언에 슬라이드 효과 사용</li>
               </ul>
               <div
-                class="skltbs-theme-light js-skeletabs"
-                data-options='{ "breakpoint": 1200, "slidingAccordion": true }'
+                class="skltbs-theme-light"
+                data-skeletabs='{ "breakpoint": 1200, "slidingAccordion": true }'
               >
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
@@ -1005,8 +1005,8 @@
 
               <h3>자동재생</h3>
               <div
-                class="skltbs-theme-light js-skeletabs"
-                data-options='{ "autoplay": true, "autoplayInterval": 5000 }'
+                class="skltbs-theme-light"
+                data-skeletabs='{ "autoplay": true, "autoplayInterval": 5000 }'
               >
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
@@ -1084,7 +1084,7 @@
                 방향키를 눌렀을 때 포커스만 이동시키고, <kbd>Enter</kbd> 또는 <kbd>Space</kbd>를 눌렀을 때 해당 탭을
                 활성화시킵니다.
               </p>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "keyboard": "focus" }'>
+              <div class="skltbs-theme-light" data-skeletabs='{ "keyboard": "focus" }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -1166,8 +1166,8 @@
                 쾌적해집니다.
               </p>
               <div
-                class="skltbs-theme-light js-skeletabs"
-                data-options='{ "resizeTimeout": 500, "panelHeight": "equal" }'
+                class="skltbs-theme-light"
+                data-skeletabs='{ "resizeTimeout": 500, "panelHeight": "equal" }'
               >
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
@@ -1245,7 +1245,7 @@
                 줍니다.
               </p>
               <p>해시 변경을 원하지 않는다면 <code>false</code>를 사용하면 됩니다.</p>
-              <div class="skltbs-theme-light js-skeletabs" data-options='{ "history": "push" }'>
+              <div class="skltbs-theme-light" data-skeletabs='{ "history": "push" }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -1938,7 +1938,7 @@ console.log(info.currentIndex); // 0</code></pre>
 
               <h3>skltbs-theme-light</h3>
               <div style="padding: 20px; background-color: #fff;">
-                <div class="skltbs-theme-light js-skeletabs">
+                <div class="skltbs-theme-light" data-skeletabs>
                   <ul class="skltbs-tab-group">
                     <li class="skltbs-tab-item">
                       <button class="skltbs-tab">Tab 1</button>
@@ -1993,7 +1993,7 @@ console.log(info.currentIndex); // 0</code></pre>
 
               <h3>skltbs-theme-dark</h3>
               <div style="padding: 20px; background-color: #1a1b1c;">
-                <div class="skltbs-theme-dark js-skeletabs">
+                <div class="skltbs-theme-dark" data-skeletabs>
                   <ul class="skltbs-tab-group">
                     <li class="skltbs-tab-item">
                       <button class="skltbs-tab">Tab 1</button>
@@ -2061,7 +2061,7 @@ console.log(info.currentIndex); // 0</code></pre>
               </div>
 
               <h3>fade</h3>
-              <div class="skltbs-theme-light use-fade js-skeletabs">
+              <div class="skltbs-theme-light use-fade" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -2114,7 +2114,7 @@ console.log(info.currentIndex); // 0</code></pre>
               </div>
 
               <h3>fade-scale</h3>
-              <div class="skltbs-theme-light use-fade-scale js-skeletabs">
+              <div class="skltbs-theme-light use-fade-scale" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -2167,7 +2167,7 @@ console.log(info.currentIndex); // 0</code></pre>
               </div>
 
               <h3>drop</h3>
-              <div class="skltbs-theme-light use-drop js-skeletabs">
+              <div class="skltbs-theme-light use-drop" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -2220,7 +2220,7 @@ console.log(info.currentIndex); // 0</code></pre>
               </div>
 
               <h3>rotate</h3>
-              <div class="skltbs-theme-light use-rotate js-skeletabs">
+              <div class="skltbs-theme-light use-rotate" data-skeletabs>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
                     <button class="skltbs-tab">Tab 1</button>
@@ -2319,9 +2319,9 @@ console.log(info.currentIndex); // 0</code></pre>
                 >를 이용해 보세요.
               </p>
               <div
-                class="faq-list js-skeletabs"
-                data-options='{ "breakpoint": 1e10, "history": false, "slidingAccordion": true, "transitionDuration": 300 }'
-                data-class-prefix="faq"
+                class="faq-list"
+                data-skeletabs='{ "breakpoint": 1e10, "history": false, "slidingAccordion": true, "transitionDuration": 300 }'
+                data-skeletabs-class="faq"
               >
                 <ul class="faq-tab-group">
                   <li class="faq-tab-item">
