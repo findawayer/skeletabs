@@ -1,0 +1,45 @@
+// container
+.skltbs-theme-light {
+  color: $color-light-text;
+
+  .skltbs {
+    // tabs
+    &-tab {
+      background: $color-light-fade;
+
+      // focused tab
+      &:focus {
+        outline: 0;
+        box-shadow: inset 0 0 0 $outline-width darken($color-light-accent, 15);
+      }
+
+      // disabled tabs
+      &:disabled {
+        color: lighten($color-light-text, 60);
+        background: transparent;
+      }
+
+      // active tab
+      &.skltbs-active {
+        color: white;
+        background: $color-light-accent;
+
+        &:focus,
+        &:hover {
+          border-color: lighten($color-light-accent, 10);
+        }
+      }
+    }
+
+    // contents to toggle
+    &-panel {
+      background-color: $color-light-background;
+      border: 2px solid $color-light-fade;
+
+      &:focus {
+        outline: 0;
+        border-color: lighten($color-light-accent, 15);
+      }
+    }
+  }
+}

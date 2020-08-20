@@ -1,0 +1,47 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jquery": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "extends": [
+    // eslint-config-airbnb-base: https://github.com/airbnb/javascript
+    "airbnb-base",
+    // eslint-plugin-prettier + eslint-config-prettier
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "consistent-return": ["error", { "treatUndefinedAsUnspecified": true }],
+    "func-names": "off",
+    "no-console": "off",
+    "no-param-reassign": ["error", { "props": false }],
+    "no-unused-expressions": [
+      "error",
+      { "allowShortCircuit": true, "allowTernary": true }
+    ],
+    "import/prefer-default-export": "off"
+  },
+  "overrides": [
+    {
+      "files": ["docs/**/*.js", "test/**/*.js"],
+      "env": {
+        "es6": false
+      },
+      "parserOptions": {
+        "ecmaVersion": 5,
+        "sourceType": "script"
+      },
+      "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+      "rules": {
+        "no-undef": "off",
+        "no-use-before-define": "off",
+        "no-var": "off",
+        "object-shorthand": "off"
+      }
+    }
+  ]
+}

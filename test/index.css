@@ -1,0 +1,87 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 30px 20px;
+}
+
+.drawer {
+  position: relative;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding-right: 260px;
+  color: #333;
+  line-height: 1.7em;
+}
+
+.control {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  width: 240px;
+}
+
+.control-row {
+  margin-bottom: 10px;
+}
+
+.control-label {
+  display: block;
+  margin-bottom: 0.25em;
+}
+
+.control-select {
+  display: block;
+  width: 100%;
+  padding: 0.5em 0.25em;
+  font: inherit;
+  border: 1px solid #aaa;
+}
+
+.control-dump {
+  min-height: 5em;
+  padding: 10px;
+  background-color: #f4f4f6;
+  font-size: 15px;
+  word-wrap: break-word;
+}
+
+.control-button {
+  display: block;
+  width: 100%;
+  padding: 0.5em 0.25em;
+  color: #fff;
+  background: #333;
+  border: 0;
+  font: inherit;
+  text-align: center;
+  text-transform: uppercase;
+  appearance: none;
+}
+
+.control-button:focus,
+.control-button:hover {
+  background: #2b8ff5;
+  outline: 0;
+}
+
+@media (max-width: 768px) {
+  body {
+    margin: 20px;
+  }
+
+  .drawer {
+    padding-right: 0;
+  }
+
+  .control {
+    position: static;
+    top: auto;
+    right: auto;
+    width: auto;
+    max-width: 480px;
+    margin: 20px auto 0;
+  }
+}

@@ -1,0 +1,64 @@
+// container
+.skltbs-theme-light,
+.skltbs-theme-dark {
+  .skltbs {
+    // tab group
+    &-tab-group {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      // self clear floats
+      &::after {
+        content: '';
+        clear: both;
+        display: table;
+      }
+    }
+
+    // tab items
+    &-tab-item {
+      float: left;
+      margin: 0 $border-spacing $border-spacing 0;
+    }
+
+    // tabs
+    &-tab {
+      display: block;
+      padding: $tab-padding;
+      color: inherit;
+      border: 0;
+      font-family: inherit;
+      font-size: 1rem;
+      appearance: none;
+      user-select: none;
+      touch-action: manipulation;
+
+      // disabled tabs
+      &:disabled {
+        background: transparent;
+        cursor: not-allowed;
+        touch-action: none;
+      }
+    }
+
+    // contents to toggle
+    &-panel {
+      padding: $panel-padding;
+      border: 2px solid;
+
+      // accordion triggers
+      &-heading {
+        margin-top: $border-spacing;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        .skltbs-tab {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
