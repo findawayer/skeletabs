@@ -1,89 +1,113 @@
-# Skeletabs
+# [Skeletabs](https://findawayer.github.io/Skeletabs/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/findawayer/Skeletabs/blob/master/LICENSE)
 
-## Introducing Skeletabs
-Skeletabs, of which the name deriving from a combination of words "skeleton" and "tabs", is a jQuery plugin that gives your contents a tabbed browsing ability including accessibility and responsivity support, along with a high customizability.
+Skeletabs is an open source **jQuery plugin** that provides tabbed browsing feature to your web contents. It is focused on **accessibility** and **scalability** above all else, and is designed to support convenience of screen readers and keyboard users, as well as to encourage developers' creative uses.
 
-With Skeletabs, you can:
-* Of course, navigate across tabbed contents.
-* Choose the default active tab.
-* Disable one or multiple tabs.
-* Equalize all panels height.
-* Assign your own class names for the entire structure.
-* Swap to accordion layout at a custom breakpoint.
-* Choose whether to navigate by clicking or by hovering.
-* Enable keyboard navigation for keyboard users.
-* Update the hash tag in the browser URL.
-* Set autoplay option and use it like a carousel.
-* Animate switching action(customizable).
-* Bind your own function to `tabswitch` event.
+- [Documentation](https://findawayer.github.io/Skeletabs/)
+  - [Demo](https://findawayer.github.io/Skeletabs/#Demo)
+  - [Options](https://findawayer.github.io/Skeletabs/#Options)
+  - [Methods](https://findawayer.github.io/Skeletabs/#Methods)
+  - [Events](https://findawayer.github.io/Skeletabs/#Events)
+  - [Themes](https://findawayer.github.io/Skeletabs/#Themes)
+  - [Transition effects](https://findawayer.github.io/Skeletabs/#Transition-effects)
+  - [FAQ](https://findawayer.github.io/Skeletabs/#FAQ)
 
-### Can I use this for free?
-Sure you do. This plugin is licensed under MIT license meaning you have full rights to use it, edit it, distrubte it and so on, as long as you include the copyright notice to your copy.
+> Skeletabs works on all ECMAScript 5 compliant browsers. We have no plan to support IE 8 and prior that are unable to parse compressed source codes.
 
-### Are there any dependencies for this plugin?
-So far nothing else than the jQuery library. Skeletabs is being tested with versions of jQuery 1.x through 3.x(latest revision of each set) — you only have to have one of them installed. That's it.
+> v1.7.0 and higher versions are supported. (slim versions provided with v3.x will not work.)
 
-### How far can I go with IE?
-Bundled CSS and JS will work in IE8.
+## Get started
 
-### I have an issue, how to report it?
-[Issues on GitHub repos](https://github.com/findawayer/Skeletabs/issues) is the official channel for bug report and/or suggestion. If you are not interested in signing up to GitHub but wish to notify me something, please do so by writing to [my mail address](mailto:findawayer@gmail.com).
-
-## How to install it?
-1. Download the package:
-2. Ready-to-use sources are located in `/dist` folder.
-3. Insert CSS and JS into your HTML.
-```html
+Please download [the latest version of Skeletabs](https://github.com/findawayer/Skeletabs/releases). Ready-to-use resources are located in `/dist` folder.
+```
 <!DOCTYPE html>
 <html>
-    <head>
-
-        <link rel="stylesheet" type="text/css" href="PATH/TO/STYLESHEET/skeletabs.css" />
-    </head>
-    <body>
-
-        <script type="text/javascript" src="PATH/TO/SCRIPT/skeletabs.js"></script>
-    </body>
+  <head>
+    <link rel="stylesheet" href="skeletabs.css" />
+  </head>
+  <body>
+    <script src="jquery.js"></script>
+    <script src="skeletabs.js"></script>
+  </body>
 </html>
 ```
-4. If you have to support IE 8, please use skeletabs.core.js instead of skeletabs.js. (The webpack-bundled JS includes lines that cannot run in IE8.)
+- Embed downloaded resources like above.
+- Skeletabs expects jQuery to be loaded beforehand.
+- The CSS file contains opinionated themes and effects. You don't need to include it if you are going to create your own look and feel.
 
-## Example usage
-
-### HTML Syntax
-```html
-<div id="skltbsDefault" class="skltbs">
-    <ul role="tablist" class="skltbs-tab-group">
-        <li role="presentation" class="skltbs-tab-item">
-            <a role="tab" class="skltbs-tab" href="#{1st panel's id}">Tab 1</a>
-        </li>
-        <li role="presentation" class="skltbs-tab-item">
-            <a role="tab" class="skltbs-tab" href="#{2nd panel's id}">Tab 2</a>
-        </li>
-        <li role="presentation" class="skltbs-tab-item">
-            <a role="tab" class="skltbs-tab" href="#{3rd panel's id}">Tab 3</a>
-        </li>
-        <li role="presentation" class="skltbs-tab-item">
-            <a role="tab" class="skltbs-tab" href="#{4th panel's id}">Tab 4</a>
-        </li>
-    </ul>
-    <div class="skltbs-panel-group">
-        <div role="tabpanel" id="{1st panel's id}" class="skltbs-panel">{1st panel}</div>
-        <div role="tabpanel" id="{2nd panel's id}" class="skltbs-panel">{2nd panel}</div>
-        <div role="tabpanel" id="{3rd panel's id}" class="skltbs-panel">{3rd panel}</div>
-        <div role="tabpanel" id="{4th panel's id}" class="skltbs-panel">{4th panel}</div>
-    </div>
+## HTML
+Skeletabs parses the HTML structure based on class attributes. Please assign relevant classes to your elements within the tree.
+```
+<div><!-- container -->
+  <ul class="skltbs-tab-group"><!-- tabGroup -->
+    <li class="skltbs-tab-item"><!-- tabItem -->
+      <button class="skltbs-tab">{{Tab 1}}</button><!-- tab -->
+    </li>
+    <li class="skltbs-tab-item">
+      <button class="skltbs-tab">{{Tab 2}}</button>
+    </li>
+  </ul>
+  <div class="skltbs-panel-group"><!-- panelGroup -->
+    <div class="skltbs-panel">{{Panel 1}}</div><!-- panel -->
+    <div class="skltbs-panel">{{Panel 2}}</div>
+  </div>
 </div>
 ```
-* Requirements for the markup are the panel's id. You need to give an (unique) id to every panel, and make your tab point to the matching panel.
-* You are encouraged to assign an id to each of the tabs also. Otherwise, Skeletabs will generate it based on the corresponding panel's id.
-* Class names starting with skltbs- are default names. You can specify your own class names using classes options.
-
-### JavaScript
-```javascript
-$("#myElement").skeletabs();
+The plugin generates an `id` for all tabs and panels to meet the accessiblity requirements. (Unless they're already given one.)
 ```
-* Above is the simplest call. Options can be passed as argument object, as described below in "API documentation" section.
+<div class="skltbs-panel-group">
+  <div class="wrapper">
+    <div class="another-wrapper">
+      <div class="skltbs-panel">{{Panel 1}}</div>
+      <div class="skltbs-panel">{{Panel 2}}</div>
+    </div>
+  </div>
+</div>
+```
+You can add any wrapping elements between the panelGroup and the panels. Please note that panels should stay siblings.
 
-## Documentation
-Complete API documentation and example snippets are available at: https://findawayer.github.io/Skeletabs/
+## CSS
+The plugin comes with a couple of built-in themes: light / dark. You can enable them just by adding a CSS class with `skltbs-theme-` prefix to the container element.
+```
+<!-- container -->
+<div class="skltbs-theme-light">...</div>
+```
+Likewise, 4 different types of effect are available — fade / fade-toggle / drop / rotate — which can be applied using a `use-` prefixed class.
+```
+<!-- container -->
+<div class="skltbs-theme-light use-fade">...</div>
+```
+
+## JS
+Once DOM is ready, you can now initialize Skeletabs like next:
+```
+$('#container').skeletabs();
+```
+And below is the configuration syntax for custom options:
+```
+$('#container').skeletabs({
+  startIndex: 2
+});
+```
+
+## Autoinit without JS
+You can omit the JS portion descripbed above and activate Skeletabs by using `data-skeletabs` attribute of the container element.
+```
+<!-- container -->
+<div data-skeletabs>...</div>
+```
+`data-skeletabs` attribute accepts a JSON object to configure custom options.
+```
+<!-- container -->
+<div data-skeletabs='{ "autoplay": true, "panelHeight": "adaptive" }'>...</div>
+```
+`data-skeletabs-class` attributes is used to configure custom CSS class names.
+```
+<!-- container -->
+<div data-skeletabs-class='{ "panelGroup": "content", "panel": "section" }'>...</div>
+```
+```
+<!-- container -->
+<div data-skeletabs-class="myprefix">...</div>
+```
+- A JSON object will modify classes that match the object keys.
+- A string will replace `skltbs` prefix.
