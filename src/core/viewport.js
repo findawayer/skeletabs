@@ -7,7 +7,7 @@ function updateViewportWidth() {
 }
 
 // Keep tracking viewport size changes.
-// Doesn't seem to need debounce because the callback function is not costly.
+// (Doesn't seem to need `debounce` because the callback function is not costly.)
 function watchViewportWidth() {
   $(window).on('resize orientationchange', updateViewportWidth);
 }

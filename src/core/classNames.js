@@ -1,3 +1,4 @@
+// Default classNames
 const defaults = {
   tabGroup: 'skltbs-tab-group',
   tabItem: 'skltbs-tab-item',
@@ -41,7 +42,7 @@ function getClassNames(arg) {
   }
 }
 
-// Config custom classnames
+// Configure custom classNames
 function setClassNames(arg) {
   if (typeof arg === 'object') {
     $.extend(classNames, arg);

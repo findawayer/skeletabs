@@ -1,3 +1,4 @@
+// Check if passed element occupies at least 1x1 px.
 // (https://github.com/jquery/jquery/blob/d0ce00cdfa680f1f0c38460bc51ea14079ae8b07/src/css/hiddenVisibleSelectors.js)
 function isOccupyingSpace(element) {
   return !!(
@@ -17,37 +18,38 @@ function isExplicitelyHidden(element) {
 
 // Find out which element in the DOM tree is hiding the passed element.
 export function findHiddenInTree(element) {
-  // If current element is explicitely set hidden by CSS declarations
+  // The element is explicetely set hidden by CSS declarations.
   if (isExplicitelyHidden(element)) {
     return element;
   }
-  // If the passed element is occupying some space, it is visible
+  // We consider the element visible if it takes up space.
   if (isOccupyingSpace(element)) {
     return null;
   }
-  // The element is the top level element
+  // We can't search further as the currnet element is the top level element.
   if (element.parentElement === document.documentElement) {
     return null;
   }
-  // Recursively look up to the element tree and find hidden ancestor
+  // Recursively look up to the element tree and find hidden ancestor.
   return findHiddenInTree(element.parentElement);
 }
 
-// Reveal the element for a short while to be able to measure its dimension
+// Force passed element to be visible.
+// (for a short while to be able to measure its actual dimension)
 export function showInstantly(element) {
-  // cache initial style attribute values
+  // Cache initial style
   element.initialDisplay = element.style.display;
   element.initialWidth = element.style.width;
   element.initialHeight = element.style.height;
   element.initialVisibility = element.style.visibility;
-  // show it
+  // Show it
   element.style.display = 'block';
   element.style.width = 'auto';
   element.style.height = 'auto';
   element.style.visibility = 'hidden';
 }
 
-// Hide revealed element by `showInstantly()`
+// Hide element back that has been revealed with `showInstantly` above.
 export function hideBack(element) {
   element.style.display = element.initialDisplay;
   element.style.width = element.initialWidth;

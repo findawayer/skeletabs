@@ -312,7 +312,6 @@ class Skeletabs {
     const reload = options.resizeTimeout
       ? debounce(this.reload.bind(this), options.resizeTimeout)
       : this.reload.bind(this);
-
     // Toggle panels on tab select
     // Pause rotation while focused
     this.addSingleEvent({
@@ -375,6 +374,7 @@ class Skeletabs {
     });
   }
 
+  // Bind a single event handler.
   addSingleEvent({ $target, delegate, name, handler, test }) {
     if (test === false) {
       return;
@@ -452,7 +452,6 @@ class Skeletabs {
   defineStartIndex() {
     const { size, options } = this;
     let startIndex;
-
     // If URL contains a hash, try to find matching panel's index
     if (window.location.hash) {
       startIndex = this.getIndexByHash(window.location.hash);
@@ -482,19 +481,16 @@ class Skeletabs {
     if (includes(this.disabledList, index)) {
       return;
     }
-
     const { $tabItems, $tabs, $panels, options, classNames } = this;
     const $currentTabItem = $tabItems.eq(index);
     const $currentTab = $tabs.eq(index);
     const $currentPanel = $panels.eq(index);
-
     // Start updating element properties
     $currentTabItem.removeClass(classNames.active);
     $currentTab
       .removeClass(classNames.active)
       .attr({ 'aria-selected': false, tabindex: -1 });
     $currentPanel.removeClass(classNames.active);
-
     // [Accordion] use jQuery methods to hide the panel
     if (this.currentLayout === 'accordion' && options.slidingAccordion) {
       $currentPanel.slideUp(options.transitionDuration);
@@ -518,7 +514,6 @@ class Skeletabs {
     if (includes(this.disabledList, index)) {
       return;
     }
-
     const {
       $tabItems,
       $tabs,
@@ -538,27 +533,23 @@ class Skeletabs {
         $previousTab: $tabs.eq(previousIndex),
       });
     };
-
     // Update current index
     this.currentIndex = index;
     this.focusedIndex = index;
-
     // Start updating element properties
     $currentTabItem.addClass(classNames.active);
     $currentTab
       .addClass(classNames.active)
       .attr({ 'aria-selected': true, tabindex: 0 });
     $currentPanel.addClass(classNames.active);
-
     // Prevent side effect on passive calls (used in `init`)
     if (passive) {
       $currentPanel.css('display', 'block');
       return;
     }
-
     // Move focus to active tab (used in `handleKeydown`)
     focus && $currentTab.focus();
-
+    // Show panel
     if (this.currentLayout === 'accordion' && options.slidingAccordion) {
       $currentPanel.slideDown({ complete: emitMovedEvent });
     } else {
@@ -579,7 +570,6 @@ class Skeletabs {
         emitMovedEvent();
       }, options.transitionDuration);
     }
-
     // Update history
     if (options.history && updateHistory && !this.isPlaying()) {
       const currentHash = `#${this.panelIds[index]}`;
@@ -597,11 +587,9 @@ class Skeletabs {
     if (index === null || index === undefined) {
       return;
     }
-
     const { $panels, $tabs, classNames } = this;
     const previousIndex = this.currentIndex;
     const nextIndex = modulo(index, this.size);
-
     // Skip if the index matches previous index, or is a disabled index
     if (nextIndex === previousIndex || includes(this.disabledList, nextIndex)) {
       return;
@@ -647,7 +635,6 @@ class Skeletabs {
   moveFocusTo(index) {
     const nextIndex = modulo(index, this.size);
     const previousIndex = this.focusedIndex;
-
     // Skip if the index matches previous index, or is a disabled index
     if (previousIndex === nextIndex || includes(this.disabledList, nextIndex)) {
       return;
@@ -695,7 +682,6 @@ class Skeletabs {
     if (this.currentLayout === 'tabs') {
       return;
     }
-
     const { classNames, options } = this;
     const previousLayout = this.currentLayout;
     // Update layout flag
@@ -704,7 +690,6 @@ class Skeletabs {
     this.$container
       .addClass(classNames.tabsMode)
       .removeClass(classNames.accordionMode);
-
     // Put tab elements back to initial position,
     // (only if we are moving from accordion to tabs)
     if (previousLayout === 'accordion') {
@@ -722,7 +707,6 @@ class Skeletabs {
         `height ${options.transitionDuration}ms ease 0s`
       );
     }
-
     // Fire layoutchange event
     this.emit('skeletabs:layoutchange');
   }
@@ -732,7 +716,6 @@ class Skeletabs {
     if (this.currentLayout === 'accordion') {
       return;
     }
-
     const { $tabs, $panels, classNames } = this;
     // Update layout flag
     this.currentLayout = 'accordion';
@@ -751,7 +734,6 @@ class Skeletabs {
       this.$panelGroup.css('transition', '');
     }
     this.$tabGroup.detach();
-
     // Fire layoutchange event
     this.emit('skeletabs:layoutchange');
   }
@@ -777,7 +759,7 @@ class Skeletabs {
 
     // Reset DOM modification from accordion layout
     if (currentLayout === 'accordion') {
-      // Put tab elements back to initial position
+      // Put the tab elements back to initial position
       const { $panelGroup, $tabItems } = this;
       this.$tabGroup.insertBefore($panelGroup);
       this.$tabs.detach().each((i, tab) => {
@@ -787,11 +769,11 @@ class Skeletabs {
       this.$panelHeadings.remove();
       this.$panels.css('display', '');
     }
-    // Remove layout CSS class from container
+    // Remove layout related classNames from the container
     this.$container.removeClass(
       `${classNames.tabsMode} ${classNames.accordionMode}`
     );
-    // Remove currentLayout
+    // Reset current layout data
     this.currentLayout = undefined;
   }
 
@@ -869,7 +851,7 @@ class Skeletabs {
     }
   }
 
-  // Tells if current instance is auto-playing
+  // Test if current instance is auto-playing
   isPlaying() {
     return typeof this.rotationId !== 'undefined';
   }
@@ -908,6 +890,7 @@ class Skeletabs {
     return nextIndex;
   }
 
+  // Get the first panel's index which is not disabled, return null if nothing found
   getFirstIndex() {
     const { size, disabledList } = this;
     let index = 0;
@@ -917,6 +900,7 @@ class Skeletabs {
     return index > size - 1 ? null : index;
   }
 
+  // Get the last panel's index which is not disabled, return null if nothing found
   getLastIndex() {
     const { size, disabledList } = this;
     let index = size - 1;
@@ -926,6 +910,7 @@ class Skeletabs {
     return index < 0 ? null : index;
   }
 
+  // Get the index of a panel that has an id matching passed `hash`, return null if nothing found
   getIndexByHash(hash) {
     if (!hash) {
       return null;
@@ -934,6 +919,8 @@ class Skeletabs {
     return match !== -1 ? match : null;
   }
 
+  // Get most useful data from the current instance.
+  // Used as custom event parameters.
   getCurrentInfo() {
     const {
       $container,
@@ -961,7 +948,7 @@ class Skeletabs {
     const targetIndex = targetHash
       ? this.getIndexByHash(targetHash)
       : this.startIndex;
-    // `updateHistory: false` to prevent duplicate history
+    // Move to that index (while preventing duplicate history from being created)
     this.goTo(targetIndex, { updateHistory: false });
   }
 
