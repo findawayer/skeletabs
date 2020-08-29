@@ -1,4 +1,4 @@
-// default options
+// Default options
 const defaults = {
   autoplay: false,
   autoplayInterval: 3000,
@@ -21,9 +21,9 @@ const defaults = {
 let options = defaults;
 
 // Custom processor for merging values
-// undefined, null: ignore
-// true: override only if the default type is boolean
-// false and others: override
+// - undefined, null: ignore
+// - true: override only if the default type is boolean
+// - false or other types: override
 function mergeOptions(targetObject, sourceObject) {
   if (!sourceObject) {
     return targetObject;

@@ -1,6 +1,9 @@
 import { createInstance, register } from '../core/instances';
 import { reverseEach } from '../helpers/jquery';
 
+// Automatically instantiate Skeletabs on container elements with `data-skeletabs` attribute
+// and use the value of `data-skeletabs` and `skeletabs-class` attributes
+// as user options and classNames respectively.
 export default function autoInit() {
   const $containers = $('[data-skeletabs]');
   reverseEach($containers, function (_, container) {

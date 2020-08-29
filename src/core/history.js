@@ -17,7 +17,7 @@ function pushHistory(hash) {
   }
 }
 
-// Retrieve hash data from a jQuery wrapped `popstate` event
+// Get hash value from a jQuery wrapped `popstate` event
 function getHashFromHistory({ originalEvent: { state } }) {
   return state && state.hash ? state.hash : null;
 }

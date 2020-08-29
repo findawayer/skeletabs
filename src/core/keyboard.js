@@ -13,6 +13,11 @@ const expectedKeys = {
   83: 'down',
   65: 'left',
   68: 'right',
+  // Numpad
+  104: 'up',
+  98: 'down',
+  100: 'left',
+  102: 'right',
 };
 
 // Action map
