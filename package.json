@@ -1,6 +1,6 @@
 {
   "name": "skeletabs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Basic, accessible, responsive and freely restyleable tabs.",
   "main": "src/index.js",
   "scripts": {
