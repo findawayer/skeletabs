@@ -1,26 +1,16 @@
 (function ($, history, location) {
   // navigation
   $('#page')
-    .on('skeletabs:init', function (_, skeletabs) {
-      if (skeletabs.$container.is('#page') && skeletabs.currentIndex === 0) {
-        $('#firstExampleInner').on('skeletabs:init', function () {
-          $(this).skeletabs('play');
-        });
-      }
-    })
-    .on('skeletabs:move', function (_, skeletabs) {
-      if (skeletabs.$container.is('#page') && skeletabs.currentIndex === 0) {
-        $('#firstExampleInner').skeletabs('pause');
-      }
-    })
-    .on('skeletabs:moved', function (_, skeletabs) {
-      if (skeletabs.$container.is('#page') && skeletabs.currentIndex === 0) {
-        $('#firstExampleInner').skeletabs('reload').skeletabs('play');
+    .on('skeletabs:moved', function (_, info) {
+      // reload all skeletabs on section change
+      if (info.$container.is('#page')) {
+        $('#page').find('.skltbs-init').skeletabs('reload');
       }
     })
     .skeletabs(
       {
-        breakpoint: 0,
+        breakpoint: 800,
+        breakpointLayout: 'none',
         history: 'push',
         keyboardTabs: 'vertical',
         transitionDuration: 300
@@ -36,8 +26,6 @@
         accordionMode: 'page-accordion'
       }
     );
-  // Insure #firstExampleInner is initialized after #page
-  $('#firstExampleInner').skeletabs({ panelHeight: 'adaptive' });
 
   // internal links: move to the section
   $(document).on('click', 'a[href^="#"]', function (event) {

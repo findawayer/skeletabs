@@ -855,7 +855,7 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ panelHeight: 'adaptive' });</code></pre>
 
-              <h3>아코디언 비활성화</h3>
+              <h3>반응형 레이아웃 사용하지 않음</h3>
               <div class="skltbs-theme-light" data-skeletabs='{ "breakpoint": 0 }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
@@ -924,6 +924,76 @@
               </div>
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ breakpoint: 0 });</code></pre>
+
+              <h3>반응형 분기점 이하에서 비활성화</h3>
+              <div class="skltbs-theme-light" data-skeletabs='{ "breakpointLayout": "destroy" }'>
+                <ul class="skltbs-tab-group">
+                  <li class="skltbs-tab-item">
+                    <button class="skltbs-tab">Tab 1</button>
+                  </li>
+                  <li class="skltbs-tab-item">
+                    <button class="skltbs-tab">Tab 2</button>
+                  </li>
+                  <li class="skltbs-tab-item">
+                    <button class="skltbs-tab">Tab 3</button>
+                  </li>
+                  <li class="skltbs-tab-item">
+                    <button class="skltbs-tab">Tab 4</button>
+                  </li>
+                </ul>
+                <div class="skltbs-panel-group">
+                  <div class="skltbs-panel">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore magni sapiente deleniti, vel
+                      veniam molestias dolor minima esse voluptatibus totam molestiae cum fugit blanditiis beatae,
+                      itaque maiores iusto, consectetur asperiores!
+                    </p>
+                    <p>
+                      Ad assumenda totam provident quae facilis molestiae porro dolore, ab quod, commodi accusamus
+                      dignissimos repudiandae? Dolore tenetur, veniam illo recusandae deserunt itaque quas maiores saepe
+                      ipsa iste nesciunt, magni doloribus!
+                    </p>
+                  </div>
+                  <div class="skltbs-panel">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae accusantium iure, esse ratione ipsum
+                      laborum inventore consequuntur, dignissimos dolore perspiciatis alias aspernatur culpa. Ducimus
+                      saepe aliquid repudiandae quibusdam numquam dolor!
+                    </p>
+                  </div>
+                  <div class="skltbs-panel">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore magni sapiente deleniti, vel
+                      veniam molestias dolor minima esse voluptatibus totam molestiae cum fugit blanditiis beatae,
+                      itaque maiores iusto, consectetur asperiores!
+                    </p>
+                    <p>
+                      Ad assumenda totam provident quae facilis molestiae porro dolore, ab quod, commodi accusamus
+                      dignissimos repudiandae? Dolore tenetur, veniam illo recusandae deserunt itaque quas maiores saepe
+                      ipsa iste nesciunt, magni doloribus!
+                    </p>
+                  </div>
+                  <div class="skltbs-panel">
+                    <p>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum voluptate quo ea commodi totam aut
+                      aliquam quasi, corrupti nulla, eligendi ullam quas deserunt, sequi praesentium tempore quidem
+                      dolor. Sequi, voluptatum.
+                    </p>
+                    <p>
+                      Quo dolor laudantium recusandae quod ullam iure tempora sint voluptates, molestiae nobis quisquam,
+                      eligendi dolore enim harum magnam. Unde assumenda sunt fuga aliquid laboriosam, delectus et
+                      deserunt inventore fugit ea.
+                    </p>
+                    <p>
+                      Optio tempore sunt nostrum repellat temporibus architecto inventore amet labore et quo. Molestias
+                      et similique, illum autem repudiandae maiores tempora at possimus inventore amet deleniti nisi
+                      sunt? Adipisci, dolorum rem!
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <pre><code class="javascript"><!--
+  -->$('#container').skeletabs({ breakpointLayout: "destroy" });</code></pre>
 
               <h3>아코디언 세부설정</h3>
               <ul>
@@ -1327,6 +1397,7 @@
   autoplay: false,
   autoplayInterval: 3000,
   breakpoint: 640,
+  breakpointLayout: 'accordion',
   disabledIndex: null,
   history: 'replace', // 'replace' | 'push' | false
   keyboard: 'select', // 'select' | 'focus' | false
@@ -1375,13 +1446,26 @@
                       <td><code>number</code></td>
                       <td><code class="hljs-number">640</code></td>
                       <td>
-                        <p>뷰포트 너비가 이 지점 이하에서 아코디언으로 바뀜을 나타냅니다. (px 단위)</p>
+                        <p>뷰포트 너비가 이 지점 이하가 되면 대체 레이아웃을 사용합니다. (px 단위)</p>
                         <ul>
-                          <li><code class="hljs-number">0</code>을 입력하면 아코디언 모드를 사용하지 않습니다.</li>
+                          <li><code class="hljs-number">0</code>을 입력하면 대체 레이아웃을 사용하지 않습니다.</li>
                           <li>
                             <code class="hljs-number">100000</code>처럼 비현실적으로 큰 단위를 입력하면 사실상 늘
-                            아코디언 모드가 됩니다.
+                            대체 레이아웃을 사용합니다.
                           </li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>breakpointLayout</td>
+                      <td><code class="hljs-string">'accordion'</code><br /><code class="hljs-string">'destroy'</code></td>
+                      <td><code class="hljs-string">'accordion'</code></td>
+                      <td>
+                        <p>위 반응형 분기점 이하에서 사용할 대체 레이아웃의 유형을 나타냅니다.</p>
+                        <ul>
+                          <li><code class="hljs-string">'accordion'</code> &mdash; 아코디언 레이아웃을 사용합니다.</li>
+                          <li>
+                            <code class="hljs-string">'destroy'</code> &mdash; Skeletabs를 비활성화합니다. (뷰포트 크기가 바뀌어 다시 주 레이아웃 영역으로 돌아가면 재활성화합니다.)
                         </ul>
                       </td>
                     </tr>

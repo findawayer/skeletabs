@@ -5,6 +5,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // custom JS optimizer
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// File manager
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 // project metadata
 const pkg = require('./package.json');
 /* eslint-disable global-require */
@@ -42,6 +44,14 @@ let config = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: `${pkg.name}.css`,
+    }),
+    // Copy bundled files to documentation directory
+    new FileManagerPlugin({
+      events: {
+        onEnd: {
+          copy: [{ source: 'dist', destination: 'docs/assets/skeletabs' }],
+        },
+      },
     }),
   ],
   module: {
@@ -98,7 +108,8 @@ if (isDevMode()) {
     plugins: [],
     optimization: {},
     devServer: {
-      contentBase: path.resolve(__dirname, 'test'),
+      open: true,
+      openPage: '/test',
       hot: true,
     },
     // source mapping

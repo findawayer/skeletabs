@@ -1,7 +1,7 @@
 import debounce from 'lodash.debounce';
 import { includes } from '../helpers/array';
 import { findHiddenInTree, showInstantly, hideBack } from '../helpers/dom';
-import { modulo, notInRange } from '../helpers/math';
+import { modulo, inRange } from '../helpers/math';
 import { capitalize } from '../helpers/string';
 import { getClassNames } from './classNames';
 import { pushHistory, replaceHistory, getHashFromHistory } from './history';
@@ -17,47 +17,94 @@ class Skeletabs {
     this.options = processOptions(userOptions);
     this.classNames = getClassNames(userClassNames);
     this.disabledList = [];
-    this.boundEvents = [];
+    this.events = [];
     this.isInit = false;
+    this.isActive = false;
     this.rotationId = undefined;
   }
 
   // Initialize
   init() {
-    if (this.isInit) {
-      return;
-    }
+    const {
+      classNames,
+      options: { breakpointLayout, resizeTimeout },
+    } = this;
+    // Prevent duplicate call
+    if (this.isInit) return;
+    // Set flag on
+    this.isInit = true;
     // Find DOM elements, make up extra necessary elements
     this.prepareElements();
+    // Activate unless alternative layout is set to 'none'
+    if (!(breakpointLayout === 'destroy' && this.isBelowBreakpoint())) {
+      this.activate();
+      // Dispatch event
+      this.emit('skeletabs:init');
+      // Add init flag to the container
+      this.$container.addClass(classNames.init);
+    }
+    // Update on viewport size change. This listener should be stored seperately,
+    // because it should remain even after `deactivate()` process,
+    // to be able to reactivate based on viewport size changes.
+    this.unwatchResize = this.addEvent({
+      target: window,
+      type: 'resize orientationchange',
+      listener: debounce(() => {
+        this.setLayout();
+        this.reload();
+      }, resizeTimeout),
+    });
+  }
+
+  // Reset & remove references to the current instance
+  // so it can be garbadge collected.
+  destroy() {
+    // Prevent duplicate call
+    if (!this.isInit) return;
+    // Set flag off
+    this.isInit = false;
+    // Deactivate
+    this.deactivate();
+    // Remove viewport resize listener
+    this.unwatchResize();
+    // Dump unused data to avoid memory leak
+    this.resetData();
+  }
+
+  // Activate functionalities
+  activate() {
+    // Prevent duplicate call
+    if (this.isActive) return;
+    // Set flag on
+    this.isActive = true;
     // Set accessibility DOM attributes
     this.setupAccessibility();
     // Disable items according to user options
     this.disableByOptions();
     // Calculate starting index
     this.defineStartIndex();
+    // Decide which layout to display
+    this.setLayout();
     // Update display related stuff (layout, panelHeight)
     this.reload();
     // Add event listeners
     this.addEvents();
-    // Show current panel;
+    // hide all elements first
+    this.$panels.css('display', 'none');
     // { passive: true } prevents side effects (like hash change)
     this.show(this.currentIndex, { passive: true });
     // Start rotation (on demand)
     this.options.autoplay && this.play();
-    // Add init className to the container
-    this.toggleInitState(true);
-    // Trigger init event
-    this.emit('skeletabs:init');
-    // debug
-    // console.log(this);
+    // Dispatch event
+    // this.emit('skeletabs:activate');
   }
 
-  // Remove all side effects & remove reference to the current instance
-  // so it can be garbadge collected. Unsetting should be in reverse order of `init()`.
-  destroy() {
-    if (!this.isInit) {
-      return;
-    }
+  // Dectivate functionalities while keeping necessary data for reactivation.
+  deactivate() {
+    // Prevent duplicate call
+    if (!this.isActive) return;
+    // Set flag off
+    this.isActive = false;
     // Stop stream if any
     this.pause();
     // Remove event listeners
@@ -68,13 +115,34 @@ class Skeletabs {
     this.resetPanelHeight();
     // Reset element attributes
     this.resetElementAttributes();
-    // Remove init className from the container
-    this.toggleInitState();
+    // Dispatch event
+    // this.emit('skeletabs:deactivate');
+  }
+
+  // Dump unused data
+  resetData() {
+    this.disabledList = [];
+    this.events = [];
+    this.rotationId = undefined;
+    delete this.$container;
+    delete this.$tabGroup;
+    delete this.$tabItems;
+    delete this.$tabs;
+    delete this.$panelGroup;
+    delete this.$panels;
+    delete this.$panelHeadings;
+    delete this.size;
+    delete this.tabIds;
+    delete this.panelIds;
+    delete this.startIndex;
+    delete this.currentIndex;
+    delete this.focusedIndex;
+    delete this.currentLayout;
   }
 
   // Cache DOM elements and frequently accessed data
   prepareElements() {
-    const { container, classNames, options } = this;
+    const { container, classNames } = this;
     // Use `:first` selector to prevent selecting nested skeletabs
     const $container = $(container);
     const $tabGroup = $container.find(`.${classNames.tabGroup}:first`);
@@ -98,16 +166,10 @@ class Skeletabs {
         `Number of tabs and panels don't match: ${$container.selector}`
       );
     }
-    // hide all elements first
-    $panels.css('display', 'none');
-    // Cache tab indices inside the element for easier `handleSelect`
-    $tabs.each((i, tab) => {
-      $(tab).data('skeletabsIndex', i);
-    });
     // Number of panels is useful for various calculations
     this.size = $panels.length;
     // Make accordion headings ahead of time (don't insert to DOM yet)
-    if (options.breakpoint) {
+    if (this.options.breakpointLayout === 'accordion') {
       this.$panelHeadings = $tabs.map(() => {
         const div = document.createElement('div');
         div.className = classNames.panelHeading;
@@ -281,7 +343,7 @@ class Skeletabs {
       .map(key => classNames[key])
       .join(' ');
     $container.removeClass(
-      `${classNames.tabsMode} ${classNames.accordionMode}`
+      `${classNames.init} ${classNames.tabsMode} ${classNames.accordionMode}`
     );
     $tabGroup.removeAttr('role');
     $tabItems
@@ -294,106 +356,95 @@ class Skeletabs {
       );
     $panels
       .removeClass(stateFlags)
-      .removeAttr('aria-hidden aria-labelledby role tabindex');
+      .removeAttr('aria-hidden aria-labelledby role style tabindex');
     // Remove jQuery data
     $tabs.removeData('skeletabsIndex');
+  }
+
+  // Custom event listener
+  addEvent({ target, delegate, type, listener }) {
+    // Fix context of the listener to the current instance
+    const boundListener = listener.bind(this);
+    const parameters = delegate
+      ? [type, delegate, boundListener]
+      : [type, boundListener];
+    // Bind the event listener
+    $(target).on(...parameters);
+    // Return of the bound event for later removal
+    return () => $(target).off(...parameters);
   }
 
   // Add event listeners
   addEvents() {
     const { $container, $panelGroup, options, classNames } = this;
-    const $window = $(window);
-    // Fix context in event handlers
-    const pause = this.pause.bind(this);
-    const resume = this.resume.bind(this);
-    const handleKeydown = this.handleKeydown.bind(this);
-    const handlePopState = this.handlePopState.bind(this);
-    const handleSelect = this.handleSelect.bind(this);
-    const reload = options.resizeTimeout
-      ? debounce(this.reload.bind(this), options.resizeTimeout)
-      : this.reload.bind(this);
-    // Toggle panels on tab select
-    // Pause rotation while focused
-    this.addSingleEvent({
-      $target: $container,
-      delegate: `.${classNames.tab}`,
-      name: options.selectEvent === 'hover' ? 'mouseenter' : 'click',
-      handler: handleSelect,
-    });
-    // Enable keyboard navigation
-    this.addSingleEvent({
-      $target: $container,
-      name: 'keydown',
-      handler: handleKeydown,
-      test: !!options.keyboard,
-    });
-    // Pause autoplaying while focus/hover
-    this.addSingleEvent({
-      $target: $container,
-      name: 'focusin',
-      handler: pause,
-      test: !!options.pauseOnFocus,
-    });
-    this.addSingleEvent({
-      $target: $container,
-      name: 'focusout',
-      handler: resume,
-      test: !!options.pauseOnFocus,
-    });
-    this.addSingleEvent({
-      $target: $container,
-      name: 'mouseenter',
-      handler: pause,
-      test: !!options.pauseOnHover,
-    });
-    this.addSingleEvent({
-      $target: $container,
-      name: 'mouseout',
-      handler: resume,
-      test: !!options.pauseOnHover,
-    });
-    // [Fix] listen to height change of possible nested instances (use event bubbling)
-    this.addSingleEvent({
-      $target: $panelGroup,
-      name: 'skeletabs:moved',
-      handler: reload,
-      test: options.panelHeight !== 'auto',
-    });
-    // Update on viewport size change
-    this.addSingleEvent({
-      $target: $window,
-      name: 'resize orientationchange',
-      handler: reload,
-    });
-    // Watch history change from user interactions (e.g. back button)
-    this.addSingleEvent({
-      $target: $window,
-      name: 'popstate',
-      handler: handlePopState,
-      test: options.history === 'push',
-    });
-  }
-
-  // Bind a single event handler.
-  addSingleEvent({ $target, delegate, name, handler, test }) {
-    if (test === false) {
-      return;
-    }
-    if (delegate) {
-      $target.on(name, delegate, handler);
-    } else {
-      $target.on(name, handler);
-    }
-    this.boundEvents.push({ $target, name, handler });
+    this.events = [
+      // Toggle panels on tab select
+      {
+        target: $container,
+        delegate: `.${classNames.tab}`,
+        type: options.selectEvent === 'hover' ? 'mouseenter' : 'click',
+        listener: this.handleSelect,
+      },
+      // Enable keyboard navigation
+      {
+        test: options.keyboard,
+        target: $container,
+        type: 'keydown',
+        listener: this.handleKeydown,
+      },
+      // Pause auto-playing when focused
+      {
+        test: options.pauseOnFocus,
+        target: $container,
+        type: 'focusin',
+        listener: this.pause,
+      },
+      {
+        test: options.pauseOnFocus,
+        target: $container,
+        type: 'focusout',
+        listener: this.resume,
+      },
+      // Pause auto-playing when hovered
+      {
+        test: options.pauseOnHover,
+        target: $container,
+        type: 'mouseenter',
+        listener: this.pause,
+      },
+      {
+        test: options.pauseOnHover,
+        target: $container,
+        type: 'mouseout',
+        listener: this.resume,
+      },
+      // Watch height changes of possible nested instances
+      {
+        test: options.panelHeight === 'auto',
+        target: $panelGroup,
+        type: 'skeletabs:moved',
+        listener: this.reload,
+      },
+      // Watch history change from user interactions
+      {
+        test: options.history === 'push',
+        target: window,
+        type: 'popstate',
+        listener: this.handlePopState,
+      },
+    ]
+      .filter(({ test }) => {
+        return typeof test === 'undefined' || !!test;
+      })
+      .map(({ target, delegate, type, listener }) => {
+        return this.addEvent({ target, delegate, type, listener });
+      });
   }
 
   // Remove event listeners
   removeEvents() {
-    // Make use of previously cached event handler data
-    this.boundEvents.forEach(({ $target, name, handler }) => {
-      $target.off(name, handler);
-    });
-    // No need to clear `boundEvents` because the instance will garbadge collected soon
+    this.events.forEach(removeEvent => removeEvent());
+    this.events = [];
   }
 
   // Disable panel by `index`
@@ -438,12 +489,15 @@ class Skeletabs {
 
   // Disable items using `disabledIndex` option.
   disableByOptions() {
-    if (this.options.disabledIndex === null) {
+    const {
+      options: { disabledIndex },
+    } = this;
+    if (disabledIndex === null) {
       return;
     }
     // translate negative indices and run disable() on them
     []
-      .concat(this.options.disabledIndex)
+      .concat(disabledIndex)
       .map(x => modulo(x, this.size))
       .forEach(this.disable.bind(this));
   }
@@ -473,34 +527,38 @@ class Skeletabs {
     this.startIndex = startIndex;
     // Assign it as currentIndex
     this.currentIndex = startIndex;
+    // Cache tab indices inside the element for easier `handleSelect`
+    this.$tabs.each((i, tab) => {
+      $(tab).data('skeletabsIndex', i);
+    });
   }
 
   // Hide panel
-  hide(index) {
+  hide(hiddenIndex) {
     // Skip if disabled index
-    if (includes(this.disabledList, index)) {
+    if (includes(this.disabledList, hiddenIndex)) {
       return;
     }
     const { $tabItems, $tabs, $panels, options, classNames } = this;
-    const $currentTabItem = $tabItems.eq(index);
-    const $currentTab = $tabs.eq(index);
-    const $currentPanel = $panels.eq(index);
+    const $hiddenTabItem = $tabItems.eq(hiddenIndex);
+    const $hiddenTab = $tabs.eq(hiddenIndex);
+    const $hiddenPanel = $panels.eq(hiddenIndex);
     // Start updating element properties
-    $currentTabItem.removeClass(classNames.active);
-    $currentTab
+    $hiddenTabItem.removeClass(classNames.active);
+    $hiddenTab
       .removeClass(classNames.active)
       .attr({ 'aria-selected': false, tabindex: -1 });
-    $currentPanel.removeClass(classNames.active);
+    $hiddenPanel.removeClass(classNames.active);
     // [Accordion] use jQuery methods to hide the panel
     if (this.currentLayout === 'accordion' && options.slidingAccordion) {
-      $currentPanel.slideUp(options.transitionDuration);
+      $hiddenPanel.slideUp(options.transitionDuration);
     } else {
       // .width() causes reflow & forces CSS transition to fire on next tick
-      $currentPanel.css('display', 'none').addClass(classNames.leave).width();
-      $currentPanel.addClass(classNames.leaveActive);
+      $hiddenPanel.css('display', 'none').addClass(classNames.leave).width();
+      $hiddenPanel.addClass(classNames.leaveActive);
       // `leave leaveActive` -> `leaveDone`
       setTimeout(() => {
-        $currentPanel
+        $hiddenPanel
           .addClass(classNames.leaveDone)
           .removeClass(`${classNames.leave} ${classNames.leaveActive}`);
       }, options.transitionDuration);
@@ -509,9 +567,9 @@ class Skeletabs {
 
   // Show panel
   // `passive` option is used to prevent side effects during init() process
-  show(index, { focus, passive, updateHistory } = {}) {
+  show(shownIndex, { focus, passive, updateHistory } = {}) {
     // Skip if disabled index
-    if (includes(this.disabledList, index)) {
+    if (includes(this.disabledList, shownIndex)) {
       return;
     }
     const {
@@ -523,9 +581,9 @@ class Skeletabs {
       options,
     } = this;
     const previousIndex = this.currentIndex;
-    const $currentTabItem = $tabItems.eq(index);
-    const $currentTab = $tabs.eq(index);
-    const $currentPanel = $panels.eq(index);
+    const $currentTabItem = $tabItems.eq(shownIndex);
+    const $currentTab = $tabs.eq(shownIndex);
+    const $currentPanel = $panels.eq(shownIndex);
     const emitMovedEvent = () => {
       this.emit('skeletabs:moved', {
         previousIndex,
@@ -534,8 +592,8 @@ class Skeletabs {
       });
     };
     // Update current index
-    this.currentIndex = index;
-    this.focusedIndex = index;
+    this.currentIndex = shownIndex;
+    this.focusedIndex = shownIndex;
     // Start updating element properties
     $currentTabItem.addClass(classNames.active);
     $currentTab
@@ -572,7 +630,7 @@ class Skeletabs {
     }
     // Update history
     if (options.history && updateHistory && !this.isPlaying()) {
-      const currentHash = `#${this.panelIds[index]}`;
+      const currentHash = `#${this.panelIds[shownIndex]}`;
       if (options.history === 'push') {
         pushHistory(currentHash);
       } else {
@@ -594,7 +652,7 @@ class Skeletabs {
     if (nextIndex === previousIndex || includes(this.disabledList, nextIndex)) {
       return;
     }
-    // Fire change event
+    // Dispatch event
     this.emit('skeletabs:move', {
       currentIndex: previousIndex,
       $currentPanel: $panels.eq(previousIndex),
@@ -665,8 +723,6 @@ class Skeletabs {
   }
 
   reload() {
-    // Decide which layout to display
-    this.toggleLayout();
     // Adjust panel heights (on demand)
     if (this.currentLayout === 'accordion') {
       this.resetPanelHeight();
@@ -678,7 +734,7 @@ class Skeletabs {
   }
 
   // Change layout to tabs
-  transformToTabs() {
+  useTabs() {
     if (this.currentLayout === 'tabs') {
       return;
     }
@@ -707,12 +763,12 @@ class Skeletabs {
         `height ${options.transitionDuration}ms ease 0s`
       );
     }
-    // Fire layoutchange event
+    // Dispatch event
     this.emit('skeletabs:layoutchange');
   }
 
   // Change layout to accordion
-  transformToAccordion() {
+  useAccordion() {
     if (this.currentLayout === 'accordion') {
       return;
     }
@@ -734,22 +790,33 @@ class Skeletabs {
       this.$panelGroup.css('transition', '');
     }
     this.$tabGroup.detach();
-    // Fire layoutchange event
+    // Dispatch event
     this.emit('skeletabs:layoutchange');
   }
 
+  isBelowBreakpoint() {
+    const {
+      options: { breakpoint },
+    } = this;
+    return breakpoint && getViewportWidth() <= breakpoint;
+  }
+
   // Decide which layout to display
-  toggleLayout() {
-    if (this.options.breakpoint) {
-      // [responsive] Choose layout between tabs and accordion
-      if (getViewportWidth() <= this.options.breakpoint) {
-        this.transformToAccordion();
-      } else {
-        this.transformToTabs();
-      }
+  setLayout() {
+    const {
+      options: { breakpointLayout },
+    } = this;
+    const isBelowBreakpoint = this.isBelowBreakpoint();
+    // Use accordion only if the sublayout is `accordion`,
+    // and we are below the pre-defined breakpoint.
+    if (breakpointLayout === 'accordion' && isBelowBreakpoint) {
+      this.useAccordion();
     } else {
-      // [non-responsive] Stick to tabs layout
-      this.transformToTabs();
+      this.useTabs();
+    }
+    // Toggle active state of the tabs when the sublayout is 'destroy'.
+    if (breakpointLayout === 'destroy') {
+      isBelowBreakpoint ? this.deactivate() : this.activate();
     }
   }
 
@@ -856,13 +923,6 @@ class Skeletabs {
     return typeof this.rotationId !== 'undefined';
   }
 
-  // Add/remove CSS class to the container to reflect init state
-  toggleInitState(isInit) {
-    const { classNames } = this;
-    this.isInit = isInit;
-    this.$container.toggleClass(classNames.init, isInit);
-  }
-
   // Trigger custom jQuery event with core info about the instance
   emit(eventName, parameters) {
     const currentInfo = this.getCurrentInfo();
@@ -883,7 +943,7 @@ class Skeletabs {
       }
     } while (includes(disabledList, nextIndex));
 
-    if (!loop && notInRange(nextIndex, 0, size - 1)) {
+    if (!loop && !inRange(nextIndex, 0, size - 1)) {
       return null;
     }
 

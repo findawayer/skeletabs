@@ -35,6 +35,9 @@
     Non_responsive: {
       breakpoint: 0
     },
+    Destroyed_responsive: {
+      breakpointLayout: 'destroy'
+    },
     Accordion_under_1000px: {
       breakpoint: 1000
     },

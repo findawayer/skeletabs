@@ -1,3 +1,13 @@
+## 2.1.1 (2020-11-10)
+
+### Functionality
+
+- Add ability to deactivate the instance below responsive breakpoint.
+
+### API: Options
+
+- Add `breakpointLayout`: the type of alternative layout to use.
+
 ## 2.0.1 (2020-08-29)
 
 ### Functionality

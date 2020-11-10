@@ -1,19 +1,16 @@
 {
   "name": "skeletabs",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "description": "Basic, accessible, responsive and freely restyleable tabs.",
   "main": "src/index.js",
   "scripts": {
     "build": "webpack",
     "dev": "set NODE_ENV=development&& webpack-dev-server",
-    "docs": "webpack --output-path docs/assets/skeletabs",
     "eslint": "eslint --fix --ext .js"
   },
   "files": [
     "dist/skeletabs.js",
-    "dist/skeletabs.css",
-    "dist/skeletabs.min.js",
-    "dist/skeletabs.min.css"
+    "dist/skeletabs.css"
   ],
   "keywords": [
     "ui",
@@ -41,6 +38,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "2.21.2",
     "eslint-plugin-prettier": "^3.1.4",
+    "filemanager-webpack-plugin": "^3.0.0-alpha.7",
     "mini-css-extract-plugin": "^0.10.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.0.5",

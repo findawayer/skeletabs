@@ -499,12 +499,6 @@ samp {
   }
 }
 
-@media (max-width: 799.98px) {
-  .section {
-    display: block !important;
-  }
-}
-
 /* Body content */
 .content h2,
 .content h3,

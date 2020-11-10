@@ -170,6 +170,7 @@
                           <div
                             id="firstExampleInner"
                             class="skltbs-theme-light"
+                            data-skeletabs='{ "panelHeight": "adaptive", "autoplay": true }'
                           >
                             <ul class="skltbs-tab-group">
                               <li class="skltbs-tab-item">
@@ -858,7 +859,7 @@
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ panelHeight: 'adaptive' });</code></pre>
 
-              <h3>No accordion mode</h3>
+              <h3>No responsive layout</h3>
               <div class="skltbs-theme-light" data-skeletabs='{ "breakpoint": 0 }'>
                 <ul class="skltbs-tab-group">
                   <li class="skltbs-tab-item">
@@ -927,6 +928,76 @@
               </div>
               <pre><code class="javascript"><!--
   -->$('#container').skeletabs({ breakpoint: 0 });</code></pre>
+
+              <h3>Deactivate below responsive breakpoint</h3>
+              <div class="skltbs-theme-light" data-skeletabs='{ "breakpointLayout": "destroy" }'>
+                <ul class="skltbs-tab-group">
+                  <li class="skltbs-tab-item">
+                    <button class="skltbs-tab">Tab 1</button>
+                  </li>
+                  <li class="skltbs-tab-item">
+                    <button class="skltbs-tab">Tab 2</button>
+                  </li>
+                  <li class="skltbs-tab-item">
+                    <button class="skltbs-tab">Tab 3</button>
+                  </li>
+                  <li class="skltbs-tab-item">
+                    <button class="skltbs-tab">Tab 4</button>
+                  </li>
+                </ul>
+                <div class="skltbs-panel-group">
+                  <div class="skltbs-panel">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore magni sapiente deleniti, vel
+                      veniam molestias dolor minima esse voluptatibus totam molestiae cum fugit blanditiis beatae,
+                      itaque maiores iusto, consectetur asperiores!
+                    </p>
+                    <p>
+                      Ad assumenda totam provident quae facilis molestiae porro dolore, ab quod, commodi accusamus
+                      dignissimos repudiandae? Dolore tenetur, veniam illo recusandae deserunt itaque quas maiores saepe
+                      ipsa iste nesciunt, magni doloribus!
+                    </p>
+                  </div>
+                  <div class="skltbs-panel">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae accusantium iure, esse ratione ipsum
+                      laborum inventore consequuntur, dignissimos dolore perspiciatis alias aspernatur culpa. Ducimus
+                      saepe aliquid repudiandae quibusdam numquam dolor!
+                    </p>
+                  </div>
+                  <div class="skltbs-panel">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore magni sapiente deleniti, vel
+                      veniam molestias dolor minima esse voluptatibus totam molestiae cum fugit blanditiis beatae,
+                      itaque maiores iusto, consectetur asperiores!
+                    </p>
+                    <p>
+                      Ad assumenda totam provident quae facilis molestiae porro dolore, ab quod, commodi accusamus
+                      dignissimos repudiandae? Dolore tenetur, veniam illo recusandae deserunt itaque quas maiores saepe
+                      ipsa iste nesciunt, magni doloribus!
+                    </p>
+                  </div>
+                  <div class="skltbs-panel">
+                    <p>
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum voluptate quo ea commodi totam aut
+                      aliquam quasi, corrupti nulla, eligendi ullam quas deserunt, sequi praesentium tempore quidem
+                      dolor. Sequi, voluptatum.
+                    </p>
+                    <p>
+                      Quo dolor laudantium recusandae quod ullam iure tempora sint voluptates, molestiae nobis quisquam,
+                      eligendi dolore enim harum magnam. Unde assumenda sunt fuga aliquid laboriosam, delectus et
+                      deserunt inventore fugit ea.
+                    </p>
+                    <p>
+                      Optio tempore sunt nostrum repellat temporibus architecto inventore amet labore et quo. Molestias
+                      et similique, illum autem repudiandae maiores tempora at possimus inventore amet deleniti nisi
+                      sunt? Adipisci, dolorum rem!
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <pre><code class="javascript"><!--
+  -->$('#container').skeletabs({ breakpointLayout: "destroy" });</code></pre>
 
               <h3>Accordion configuration</h3>
               <ul>
@@ -1330,6 +1401,7 @@
   autoplay: false,
   autoplayInterval: 3000,
   breakpoint: 640,
+  breakpointLayout: 'accordion',
   disabledIndex: null,
   history: 'replace', // 'replace' | 'push' | false
   keyboard: 'select', // 'select' | 'focus' | false
@@ -1378,13 +1450,26 @@
                       <td><code>number</code><br /><code>false</code></td>
                       <td><code class="hljs-number">640</code></td>
                       <td>
-                        <p>Transform to accordion layout below this pixel. (in px, inclusive)</p>
+                        <p>Transform to alternative layout when viewport width is below this point. (in px, inclusive)</p>
                         <ul>
-                          <li><code class="hljs-number">0</code> will disable accordion mode.</li>
+                          <li><code class="hljs-number">0</code> will disable alternative layout.</li>
                           <li>
                             Unrealistically large numbers like <code class="hljs-number">100000</code> will virtually
-                            set it to constant accordion mode.
+                            set it to constant alternative layout.
                           </li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>breakpointLayout</td>
+                      <td><code class="hljs-string">'accordion'</code><br /><code class="hljs-string">'destroy'</code></td>
+                      <td><code class="hljs-string">'accordion'</code></td>
+                      <td>
+                        <p>The type of alternative layout to use below the responsive breakpoint above.</p>
+                        <ul>
+                          <li><code class="hljs-string">'accordion'</code> &mdash; Use accordion layout.</li>
+                          <li>
+                            <code class="hljs-string">'destroy'</code> &mdash; Deactivate Skeletabs. (Will reactivate when the viewport resizes back to the main layout range.)
                         </ul>
                       </td>
                     </tr>

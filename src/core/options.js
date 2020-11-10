@@ -3,6 +3,7 @@ const defaults = {
   autoplay: false,
   autoplayInterval: 3000,
   breakpoint: 640,
+  breakpointLayout: 'accordion',
   disabledIndex: null,
   history: 'replace', // 'replace' | 'push' | false
   keyboard: 'select', // 'select' | 'focus' | false
