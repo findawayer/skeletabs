@@ -1,4 +1,6 @@
 /* eslint-disable global-require */
+// Expose webpack's built-in modules
+const webpack = require('webpack');
 // Node.js path helper
 const path = require('path');
 // CSS extractor
@@ -105,7 +107,12 @@ if (isDevMode()) {
       filename: `${pkg.name}.js`,
       path: path.resolve(__dirname, 'test'),
     },
-    plugins: [],
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+      }),
+    ],
     optimization: {},
     devServer: {
       open: true,

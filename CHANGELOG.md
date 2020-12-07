@@ -1,3 +1,9 @@
+## 2.1.2 (2020-12-07)
+
+### Development
+
+- Add jquery@^1.12.0 as peerDependency. (Although skeletabs works with jquery versions down to v1.7.0, these versions are not compatible with the latest node.js engine during development.)
+
 ## 2.1.1 (2020-11-10)
 
 ### Functionality
