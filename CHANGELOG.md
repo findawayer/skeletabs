@@ -1,3 +1,7 @@
+## 2.1.3 (2021-02-02)
+
+- Load proper `jquery` from global wrapper.
+
 ## 2.1.2 (2020-12-07)
 
 ### Development

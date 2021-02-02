@@ -14,7 +14,10 @@ const pkg = require('./package.json');
 /* eslint-disable global-require */
 
 // Environment detector
-const isDevMode = () => process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === 'development';
+const isProduction = process.env.NODE_ENV === 'production';
+// Path resolver
+const fromRoot = subpath => path.resolve(process.cwd(), subpath);
 
 // Pre-defined string-replace-loader template
 // 1. convert {{version}} to `version` value in package.json
@@ -41,27 +44,38 @@ let config = {
   entry: path.join(__dirname, pkg.main),
   output: {
     filename: `${pkg.name}.js`,
-    path: path.resolve(__dirname, 'dist'),
+    path: fromRoot('dist'),
+    publicPath: '/test',
+  },
+  externals: {
+    jquery: 'jQuery',
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: `${pkg.name}.css`,
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
     }),
+    // Extract styles as CSS
+    isProduction &&
+      new MiniCssExtractPlugin({
+        filename: `${pkg.name}.css`,
+      }),
     // Copy bundled files to documentation directory
-    new FileManagerPlugin({
-      events: {
-        onEnd: {
-          copy: [{ source: 'dist', destination: 'docs/assets/skeletabs' }],
+    isProduction &&
+      new FileManagerPlugin({
+        events: {
+          onEnd: {
+            copy: [{ source: 'dist', destination: 'docs/assets/skeletabs' }],
+          },
         },
-      },
-    }),
-  ],
+      }),
+  ].filter(Boolean),
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: isDevMode()
+        use: isDevelopment
           ? 'babel-loader'
           : ['babel-loader', stringReplaceLoader],
       },
@@ -70,7 +84,7 @@ let config = {
         use: [
           // - development: inject css into DOM as <style /> node
           // - production: extract as separate CSS file for distribution
-          isDevMode() ? 'style-loader' : MiniCssExtractPlugin.loader,
+          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           stringReplaceLoader,
           // interprete CSS to commonJS
           'css-loader',
@@ -100,24 +114,19 @@ let config = {
   },
 };
 
-if (isDevMode()) {
+if (isDevelopment) {
   config = Object.assign(config, {
     mode: 'development',
     output: {
       filename: `${pkg.name}.js`,
-      path: path.resolve(__dirname, 'test'),
+      path: fromRoot('test'),
     },
-    plugins: [
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-      }),
-    ],
     optimization: {},
     devServer: {
+      hot: true,
       open: true,
       openPage: '/test',
-      hot: true,
+      publicPath: '/test',
     },
     // source mapping
     devtool: 'eval-cheap-module-source-map',
